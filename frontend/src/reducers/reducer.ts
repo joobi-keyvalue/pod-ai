@@ -1,22 +1,18 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
-import { CounterState } from '../types';
-const increment = createAction('counter/increment')
-const decrement = createAction('counter/decrement')
-const incrementByAmount = createAction<number>('counter/incrementByAmount')
+import { PodState } from '../types';
+export const addPodcast = createAction<string>('pod/add')
+export const removePodcast = createAction('pod/remove')
 
-const initialState = { value: 0 } as CounterState;
+const initialState = { audio: '' } as PodState;
 
-const counterReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(increment, (state, action) => {
-      state.value++
-    })
-    .addCase(decrement, (state, action) => {
-      state.value--
-    })
-    .addCase(incrementByAmount, (state, action) => {
-      state.value += action.payload
-    })
+const podReducer = createReducer(initialState, (builder) => {
+  builder.addCase(addPodcast, (state, action) => {
+    state.audio = action.payload;
+  })
+  .addCase(removePodcast, (state) => {
+    state.audio = ''
+  })
+    
 })
 
-export default counterReducer;
+export default podReducer;

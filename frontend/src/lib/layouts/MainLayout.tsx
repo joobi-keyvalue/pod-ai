@@ -19,6 +19,7 @@ import Preferences from '../screens/preferences/Preferences';
 import Profile from '../screens/profile/Profile';
 
 import Podcast from "../screens/podcast/Podcast";
+import LikedPodcasts from '../screens/liked-podcasts/likedPodcasts';
 
 const MainLayout = () => {
   return (
@@ -45,8 +46,11 @@ const MainLayout = () => {
               <Route path="/app/profile" element={<Profile />} />
               <Route path="/app/player/:id" element={<Podcast />} />
               <Route path="/app/not-found" element={<NotFound/>} />
+              <Route path="/app/liked-podcasts" element={<LikedPodcasts/>} />
 
             </Route>
+            <Route path="/logout" element={<Navigate to="/splash" />} /> 
+            <Route path="*" element={<Navigate to="/app/not-found"/>} />
         </Routes>
       </Router>
     </div>

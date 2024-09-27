@@ -36,7 +36,7 @@ const Profile = () => {
       </div>
       <img src="assets/free_plan.svg" className={styles.freePlan} />
       <div className={`${styles.bottomButton}`}>
-        <Button text="Save" onClick={() => navigate('/onboarding/interest')} />
+        <Button text="Save" onClick={() => navigate('/app')} />
       </div>
       </div>
     </div>

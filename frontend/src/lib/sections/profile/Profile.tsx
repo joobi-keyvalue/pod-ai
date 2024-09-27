@@ -1,16 +1,35 @@
-import React, { FC, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './styles.scss';
-import TextInput from '../../components/textInput/TextInput';
-import Button from '../../components/button/Button';
-import BottomCallout from '../../components/bottom-callout/BottomCallout';
-import PhoneInput from '../../components/phone-input/PhoneInput';
+import React, { FC, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import styles from "./styles.scss";
+import TextInput from "../../components/textInput/TextInput";
+import Button from "../../components/button/Button";
+import BottomCallout from "../../components/bottom-callout/BottomCallout";
+import PhoneInput from "../../components/phone-input/PhoneInput";
+import { useCreateUserMutation } from '../../../api/onBoardingAPI';
 
-const ProfileSetupSection :FC<{ buttonText?: string}> = ({ buttonText = 'Continue'}) => {
-  const [image, setImage] = useState('');
-  const [name, setName] = useState('');
+const ProfileSetupSection: FC<{ buttonText?: string; goTo?: string }> = ({
+  buttonText = "Continue",
+  goTo = "/onboarding/interest",
+}) => {
+  const [image, setImage] = useState("");
+  const [name, setName] = useState("");
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const [createUser, { isSuccess }] = useCreateUserMutation();
+  const { state } = useLocation();
+  const { phoneNumber = "1234567890" } = state || {};
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(goTo);
+    }
+  }, [isSuccess]);
+  const handleCreateUser = () => {
+    createUser({
+      name: name,
+      phone_number: phoneNumber,
+    });
+  };
   return (
     <>
       <div className={`${styles.image} ${open && styles.imageOpen}`}>
@@ -18,16 +37,16 @@ const ProfileSetupSection :FC<{ buttonText?: string}> = ({ buttonText = 'Continu
           <div>
             <img
               className={styles.placeholder}
-              src='assets/profile-placeholder.svg'
+              src="assets/profile-placeholder.svg"
             />
-            <input type='file' />
+            <input type="file" />
           </div>
         )}
-        <img src='assets/add-image.svg' className={styles.addImage} />
+        <img src="assets/add-image.svg" className={styles.addImage} />
       </div>
       <div className={`${styles.name} ${open && styles.nameOpen}`}>
         <TextInput
-          placeholder='What should we call you?'
+          placeholder="What should we call you?"
           onClick={() => setOpen(!open)}
           onChange={setName}
         />
@@ -41,7 +60,11 @@ const ProfileSetupSection :FC<{ buttonText?: string}> = ({ buttonText = 'Continu
         </div>
       </div>
       <div className={`${styles.bottomButton} ${open && styles.open}`}>
-        <Button text={buttonText} disabled={name?.length === 0} onClick={() => navigate('/onboarding/interest')} />
+        <Button
+          text={buttonText}
+          disabled={name?.length === 0}
+          onClick={handleCreateUser}
+        />
       </div>
       <BottomCallout open={open}>
         <PhoneInput />

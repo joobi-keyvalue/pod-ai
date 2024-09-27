@@ -5,10 +5,10 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/keycode/podai/auth"
-	"github.com/keycode/podai/topic"
-	"github.com/keycode/podai/userTopic"
 	"github.com/keycode/podai/podcast"
+	"github.com/keycode/podai/topic"
 	"github.com/keycode/podai/tts"
+	"github.com/keycode/podai/userTopic"
 )
 
 func initRouter(dependencies Dependencies) (router *mux.Router) {
@@ -47,11 +47,11 @@ func initRouter(dependencies Dependencies) (router *mux.Router) {
 		http.MethodGet,
 	)
 
-	router.Handle("/podcasts", podcast.HandleGetPodcasts(dependencies.PodcastService)).Methods(
+	router.Handle("/podcast/{id}/sources", podcast.HandleGetSourcesByPodcastID(dependencies.PodcastService)).Methods(
 		http.MethodGet,
 	)
 
-	router.Handle("/podcast/{id}/sources", podcast.HandleGetSourcesByPodcastID(dependencies.PodcastService)).Methods(
+	router.Handle("/user/{user_id}/podcasts", podcast.HandleGetPodcasts(dependencies.PodcastService)).Methods(
 		http.MethodGet,
 	)
 

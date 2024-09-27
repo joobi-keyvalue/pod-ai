@@ -8,6 +8,7 @@ const ProfileSetup = () => {
   const [name, setName] = useState('');
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <div className={styles.back} onClick={() => navigate('/onboarding/otp')}>

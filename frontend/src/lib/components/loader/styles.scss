@@ -1,0 +1,80 @@
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+    top: 37.59px;
+    left: 50.59px;
+  }
+  25% {
+    transform: rotate(90deg);
+    top: 43.59px;
+    left: 56.59px;
+  }
+  50% {
+    transform: rotate(180deg);
+    top: 49.59px;
+    left: 50.59px;
+  }
+  75% {
+    top: 43.59px;
+    left: 45.59px;
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(359deg);
+    top: 37.59px;
+    left: 50.59px;
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(0.92);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.92);
+  }
+}
+.loaderContainer {
+  background-color: #FFA9A380;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .loader {
+    position: relative;
+    height: 248px;
+    width: 248px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      position: absolute;
+    }
+    .circle1 {
+      top: 0;
+      left: 0;
+      animation: pulse 2s infinite linear;
+      animation-delay: 0;
+    }
+    .circle2 {
+      top: 25.3px;
+      left: 25.3px;
+      animation: pulse 2s infinite linear;
+      animation-delay: 1s;
+    }
+    .circle3 {
+      top: 50.59px;
+      left: 50.59px;
+      animation: rotate 2s infinite reverse linear;
+    }
+    .mic {
+      position: relative;
+    }
+  }
+}

@@ -40,13 +40,13 @@ func (s *podcastStore) GetPodcastByID(ctx context.Context, podcastID int64) (pod
 	return
 }
 
-func (s *podcastStore) GetPodcasts(ctx context.Context, limit, offset int, isLiked bool) (podcasts []Podcast, err error) {
+func (s *podcastStore) GetPodcasts(ctx context.Context, userID string, limit, offset int, isLiked bool) (podcasts []Podcast, err error) {
 	query := getPodcastsQuery
 	if isLiked {
 		query = getLikedPodcastsQuery
 	}
 
-	err = s.db.SelectContext(ctx, &podcasts, query, limit, offset)
+	err = s.db.SelectContext(ctx, &podcasts, query, userID, limit, offset)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			return nil, constants.ErrPodcastNotFound
