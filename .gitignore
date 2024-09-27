@@ -3,3 +3,4 @@ backend/ai/__pycache__/
 backend/ai/.env
 frontend/node_modules
 .venv/
+__pycache__/
