@@ -1,0 +1,16 @@
+.container {
+  padding-top: 45px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 45px;
+  position: relative;
+  height: calc(100vh - 62px);
+  .interestSection {
+    margin-top: 44px;
+    width: calc(100% - 48px);
+    padding: 0 26px ;
+  }
+  .caption {
+    padding: 0 26px ;
+  }
+}

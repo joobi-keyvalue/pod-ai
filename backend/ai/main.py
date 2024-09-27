@@ -1,8 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from models import Item
 from dotenv import load_dotenv
-from tools.tavily import fetch_content
-from service import get_users
 load_dotenv()
 
 app = FastAPI()

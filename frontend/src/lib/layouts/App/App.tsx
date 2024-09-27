@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import styles from './styles.scss';
+import SmallPlayer from '../../components/small-player/SmallPlayer';
 
 const AppLayout = () => {
   return (
@@ -10,6 +11,7 @@ const AppLayout = () => {
         <img className={styles.logo} src="assets/app-logo.svg" />
       </div>
       <Outlet />
+      {/* <SmallPlayer title="Bears, MMA & Global Warming." /> */}
     </div>
   )
 }

@@ -50,6 +50,10 @@ func initRouter(dependencies Dependencies) (router *mux.Router) {
 	router.Handle("/podcasts", podcast.HandleGetPodcasts(dependencies.PodcastService)).Methods(
         http.MethodGet,
     )
+	
+	router.Handle("/verify-otp", auth.HandleVerifyOTP(dependencies.AuthService)).Methods(
+		http.MethodPost,
+	)
 
 	router.Handle("/generate-tts", tts.HandleStartTTS(dependencies.TTSService)).Methods(
 		http.MethodPost,
