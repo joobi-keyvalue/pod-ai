@@ -10,7 +10,6 @@ Pod AI is a powerful artificial intelligence system with a Go backend, Python AI
     - [Starting the Go Server](#starting-the-go-server)
     - [Starting the Python Server](#starting-the-python-server)
     - [Starting the Frontend](#starting-the-frontend)
-  - [Features](#features)
   - [License](#license)
 
 ## Installation
@@ -66,12 +65,6 @@ To install pod-ai, follow these steps:
    ```
 
 The frontend should now be accessible at `http://localhost:3000`.
-
-## Features
-
-- Feature 1: [Brief description]
-- Feature 2: [Brief description]
-- Feature 3: [Brief description]
 
 ## License
 
