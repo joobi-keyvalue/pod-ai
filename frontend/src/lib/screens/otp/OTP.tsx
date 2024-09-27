@@ -18,6 +18,15 @@ const OTP = () => {
   const { phoneNumber = "1234567890", userDetails = {} } = state || {};
   const [verifyOtp, { isSuccess, status, data }] = useVerifyOtpMutation();
 
+
+  useEffect(() => {
+    if (data) {
+      localStorage.setItem("userName", userDetails?.data?.name);
+      localStorage.setItem("phoneNumber", userDetails?.data?.phone_number);
+      localStorage.setItem("userID", userDetails?.data?.id);
+    }
+  }, [data]);
+
   useEffect(() => {
     if (isSuccess) {
       userDetails?.data?.is_existing_user
@@ -42,6 +51,7 @@ const OTP = () => {
     verifyOtp({ otp: otp });
     setOpen(false);
   };
+  
   return (
     <div className={styles.container}>
       <div
