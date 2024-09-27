@@ -32,7 +32,7 @@ func (s *userStore) GetByPhoneNumber(ctx context.Context, phoneNumber string) (u
 
 func (s *userStore) CreateUser(ctx context.Context, phoneNumber string, name string) (u User, err error) {
 
-	_, err = s.db.ExecContext(ctx, insertUserQuery, phoneNumber, name)
+	err = s.db.GetContext(ctx, &u, insertUserQuery, phoneNumber, name)
 	if err != nil {
 		return
 	}

@@ -9,5 +9,5 @@ const (
 						FROM "user" 
 						WHERE phone_number = $1`
 
-	insertUserQuery = `INSERT INTO "user" (phone_number, name) VALUES ($1, $2)`
+	insertUserQuery = `INSERT INTO "user" (phone_number, name) VALUES ($1, $2) RETURNING user_id, "name", phone_number;`
 )
