@@ -5,6 +5,7 @@ from tools.tavily import fetch_content
 from tools.openai import summarize_topic
 from tools.reddit import fetch_reddit_urls
 from tools.openai import script_generator, convert_to_ssml
+import requests
 
 
 today = datetime.datetime.now()
@@ -14,6 +15,7 @@ def create_podcast_for_new_user(user_id):
     create_topic_summary()
     create_reddit_user_summary(user_id)
     create_podcast_for_users(user_id)
+    requests.post("https://194d-103-138-236-18.ngrok-free.app/generate-tts")
 
 
 def create_topic_summary():
