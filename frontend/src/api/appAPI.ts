@@ -20,13 +20,14 @@ export const appAPI = apiWithTag.injectEndpoints({
         method: 'GET'
       })
     }),
-    getUserPreferences: builder.query({
+    getUserTopics: builder.query({
       query: ({ id}) => ({
         url: `/users/${id}/topics`,
         method: 'GET'
       }) 
-    })
+    }),
+ 
   })
 })
 
-export const { useGetUserDetailsQuery, useGetUserPodcastQuery, useGetPodcastSourcesQuery, useGetUserPreferencesQuery } = appAPI;
+export const { useGetUserDetailsQuery, useGetUserPodcastQuery, useGetPodcastSourcesQuery, useGetUserTopicsQuery } = appAPI;
