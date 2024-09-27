@@ -3,6 +3,6 @@ backend/ai/__pycache__/
 backend/ai/.env
 frontend/node_modules
 .venv/
-=======
+backend/core/podai.log
 
 push.sh
