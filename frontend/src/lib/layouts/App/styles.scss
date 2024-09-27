@@ -1,0 +1,19 @@
+.container {
+  background-color: #FFFFF0;
+  width: 100vw;
+  height: 100vh;
+  .header {
+    padding: 25px 35px 0;
+    display: flex;
+    width: calc(100% - 70px);
+    justify-content: space-between;
+    .hamburger {
+      width: 16px;
+      height: 14px;
+    }
+    .logo {
+      width: 94.1px;
+      height: 37px;
+    }
+  }
+}
