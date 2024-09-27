@@ -1,0 +1,32 @@
+.container {
+  padding: 27px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 43px;
+  .listen {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    .title {
+      font-size: 20px;
+      font-weight: 500;
+      color: #0F0F0F;
+    }
+    .divider {
+      border-bottom: 1px solid #FFA9A3;
+      width: 100%;
+      margin-left: 71px;
+      margin-top: 18px;
+    }
+    .listenNowPlaylist {
+      margin-top: 34px;
+    }
+    .listenAgainPlaylist {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      width: 100%;
+    }
+  }
+}

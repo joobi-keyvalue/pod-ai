@@ -32,6 +32,14 @@ const ProfileSetupSection = () => {
           onChange={setName}
         />
       </div>
+      <div className={styles.accounts}>
+        <div className={styles.accountsTitle}>Connect Your Accounts:</div>
+        <div className={styles.accountSection}>
+          <img src="assets/twitter.svg" />
+          <img src="assets/reddit.svg" />
+          <img src="assets/linkedin.svg" />
+        </div>
+      </div>
       <div className={`${styles.bottomButton} ${open && styles.open}`}>
         <Button text='Continue' disabled={name?.length === 0} onClick={() => navigate('/onboarding/interest')} />
       </div>

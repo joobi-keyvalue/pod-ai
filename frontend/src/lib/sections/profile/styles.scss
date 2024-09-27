@@ -1,6 +1,6 @@
 
   .image {
-    padding-top: 109px;
+    padding-top: 39px;
     position: relative;
     transition: all 0.3s;
     div {
@@ -18,8 +18,8 @@
       padding-top: 20px;
     }
     .placeholder {
-      width: 209px;
-      height: 209px;
+      width: 195px;
+      height: 195px;
     }
     .addImage {
       position: absolute;
@@ -29,8 +29,22 @@
       height: 53px;
     }
   }
+  .accounts {
+    padding-top: 46px;
+    .accountsTitle {
+      font-size: 18px;
+      color: #0F0F0F;
+      width: 50%;
+    }
+    .accountSection {
+      margin-top: 35px;
+      display: flex;
+      gap: 33px;
+      justify-content: center;
+    }
+  }
   .name {
-    padding-top: 59px;
+    padding-top: 37px;
     transition: all 0.3s;
     &.nameOpen {
       padding-top: 15px;
