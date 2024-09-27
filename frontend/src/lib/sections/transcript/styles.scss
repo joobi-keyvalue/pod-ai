@@ -49,6 +49,9 @@
       .text {
         border-bottom: 2px solid #FFA9A3;
         text-overflow: ellipsis;
+        width: 218px;
+        text-wrap: nowrap;
+        overflow: hidden;
       }
     }
   }

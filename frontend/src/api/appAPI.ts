@@ -20,6 +20,7 @@ export const appAPI = apiWithTag.injectEndpoints({
         method: 'GET'
       })
     }),
+<<<<<<< Updated upstream
     getUserTopics: builder.query({
       query: ({ id}) => ({
         url: `/users/${id}/topics`,
@@ -31,3 +32,15 @@ export const appAPI = apiWithTag.injectEndpoints({
 })
 
 export const { useGetUserDetailsQuery, useGetUserPodcastQuery, useGetPodcastSourcesQuery, useGetUserTopicsQuery } = appAPI;
+=======
+    getPodcastById: builder.query({
+      query: ({id}) => ({
+        url: `/podcast/${id}`,
+        method: 'GET'
+      })
+    })
+  })
+})
+
+export const { useGetUserDetailsQuery, useGetUserPodcastQuery, useGetPodcastSourcesQuery, useGetPodcastByIdQuery } = appAPI;
+>>>>>>> Stashed changes

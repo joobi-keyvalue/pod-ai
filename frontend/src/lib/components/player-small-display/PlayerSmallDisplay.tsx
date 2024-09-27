@@ -6,10 +6,11 @@ interface PlayerPropType {
   title: string;
   duration: string;
   date: string;
+  onClick?: () => void
 }
-const PlayerSmallDisplay: FC<PlayerPropType> = ({ title, duration, date, image}) => {
+const PlayerSmallDisplay: FC<PlayerPropType> = ({ title, duration, date, image, onClick}) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={onClick}>
       <div className={styles.image}>
         <img src={image || 'assets/bear.svg' } />
         <div className={styles.play}><img src="assets/playButton.svg" /></div>

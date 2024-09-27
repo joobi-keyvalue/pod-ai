@@ -1,12 +1,15 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import styles from './styles.scss';
 import Caption from '../../components/caption/Caption';
-import dummyText from './dummy';
 import Sidebar from '../../components/sidebar/Sidebar';
+import { useParams } from 'react-router-dom';
+import { useGetPodcastSourcesQuery } from '../../../api/appAPI';
 
-const Transcript: FC<{ stop: boolean, closeTranscript: () => void}> = ({ stop, closeTranscript}) => {
+const Transcript: FC<{ stop: boolean, closeTranscript: () => void, transcript?: string}> = ({ stop, closeTranscript, transcript = ''}) => {
   const [displayText, setDisplayText] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { id} = useParams();
+  const { data } = useGetPodcastSourcesQuery({id});
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -15,8 +18,8 @@ const Transcript: FC<{ stop: boolean, closeTranscript: () => void}> = ({ stop, c
     let interval: any;
     if (!stop) {
       interval = setInterval(() => {
-      setDisplayText((val) => dummyText.slice(0, val.length + 1));
-    }, 100)
+      setDisplayText((val) => transcript.slice(0, val.length + 1));
+    }, 50)
   }
     return () => {
       clearInterval(interval)
@@ -45,14 +48,12 @@ const Transcript: FC<{ stop: boolean, closeTranscript: () => void}> = ({ stop, c
         <Caption content='Sources' />
       </div>
       <div className={styles.sourceList}>
-        <div className={styles.eachSource}>
+        {data?.data?.map((e: string) => (
+          <div className={styles.eachSource} onClick={() => window.open(e, '_blank')}>
           <img src="assets/link.svg" />
-          <div className={styles.text}>bearsworld.mv/article1...</div>
+          <div className={styles.text} title={e}>{e}</div>
         </div>
-        <div className={styles.eachSource}>
-          <img src="assets/link.svg" />
-          <div className={styles.text}>bearsworld.mv/article1...</div>
-        </div>
+        ))}
       </div>
     </div>
   )
