@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import Caption from "../../components/caption/Caption";
 import PlayerDisplay from "../../components/player-display/PlayerDisplay";
@@ -29,22 +29,33 @@ const LandingPage = () => {
 
     return `${dateVal.getDate()}  ${months[dateVal.getMonth()+1]}, ${dateVal.getFullYear()}`
   }
+
+  const getTodayPodcast = useMemo(() => {
+    const currentPodcast = data?.data[0];
+    if ((new Date().getTime() - new Date(currentPodcast?.date).getTime())=== 0) {
+      return currentPodcast;
+    }
+    return null;
+  }, [data]);
   return (
     <>
     <div className={styles.container}>
       <Caption content={`Hi ${userName}`} />
-      <div className={styles.listen}>
-        <div className={styles.listenNow}>
+      {data?.data?.length > 0 && (
+        <div className={styles.listen}>
+        {getTodayPodcast && (
+          <div className={styles.listenNow}>
           <div className={styles.title}>Listen Now:</div>
           <div className={styles.divider} />
           <div className={styles.listenNowPlaylist} onClick={onPodcastClick}>
             <PlayerDisplay
-              duration="30 min."
-              title="Bears, MMA & Global Warming."
+              duration="1 min."
+              title={getTodayPodcast?.title || `${getDate(getTodayPodcast?.date)} Podcast`}
               image="assets/bear.svg"
             />
           </div>
         </div>
+        )}
         <div className={styles.listenAgain}>
           <div className={styles.title}>Listen Again:</div>
           <div className={styles.divider} />
@@ -52,25 +63,11 @@ const LandingPage = () => {
             {data?.data?.map((podcast: any) => (
               <PlayerSmallDisplay key={podcast.id} title={podcast.title || `${getDate(podcast.date)} Podcast`} date={getDate(podcast.date)} duration="1 min" />
             ))}
-            {/* <PlayerSmallDisplay
-              title="Goa, Covid & Heartbreak."
-              date="19 Sep, 2024"
-              duration="20 min"
-            />
-            <PlayerSmallDisplay
-              title="Golang, Elections & GOT."
-              date="17 Sep, 2024"
-              duration="25 min"
-            />
-            <PlayerSmallDisplay
-              title="Goa, Covid & Heartbreak."
-              date="19 Sep, 2024"
-              duration="20 min"
-            /> */}
           </div>
         </div>
       </div>
-      {/* <NothingHerePage /> */}
+      )}
+      {data?.data?.length === 0 && <NothingHerePage />}
     </div>
     {isLoading && <Loader />}
     </>
