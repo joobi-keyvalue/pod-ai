@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import styles from "./styles.scss";
 
 const menuItems = [
-  { name: "Profile", link: "/profile" },
-  { name: "Preferences", link: "/preferences" },
+  { name: "Profile", link: "/app/profile" },
+  { name: "Preferences", link: "/app/preferences" },
   { name: "Liked Podcasts", link: "/liked-podcasts" },
-  { name: "Topics", link: "/topics" },
-  { name: "Settings", link: "/settings" },
+  { name: "Topics", link: "/app/topics" },
+  { name: "Settings", link: "/app/settings" },
   { name: "Logout", link: "/logout" },
   { name: "Exit", link: "/app" },
 ];

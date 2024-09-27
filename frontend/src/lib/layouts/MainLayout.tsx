@@ -47,6 +47,8 @@ const MainLayout = () => {
               <Route path="/app/not-found" element={<NotFound/>} />
 
             </Route>
+            <Route path="/logout" element={<Navigate to="/splash" />} /> 
+            <Route path="*" element={<Navigate to="/app/not-found"/>} />
         </Routes>
       </Router>
     </div>

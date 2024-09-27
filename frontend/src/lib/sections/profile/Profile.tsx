@@ -6,7 +6,7 @@ import Button from '../../components/button/Button';
 import BottomCallout from '../../components/bottom-callout/BottomCallout';
 import PhoneInput from '../../components/phone-input/PhoneInput';
 
-const ProfileSetupSection :FC<{ buttonText?: string}> = ({ buttonText = 'Continue'}) => {
+const ProfileSetupSection :FC<{ buttonText?: string, goTo?: string}> = ({ buttonText = 'Continue', goTo = '/onboarding/interest'}) => {
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
   const [open, setOpen] = useState(false);
@@ -41,7 +41,7 @@ const ProfileSetupSection :FC<{ buttonText?: string}> = ({ buttonText = 'Continu
         </div>
       </div>
       <div className={`${styles.bottomButton} ${open && styles.open}`}>
-        <Button text={buttonText} disabled={name?.length === 0} onClick={() => navigate('/onboarding/interest')} />
+        <Button text={buttonText} disabled={name?.length === 0} onClick={() => navigate(goTo)} />
       </div>
       <BottomCallout open={open}>
         <PhoneInput />

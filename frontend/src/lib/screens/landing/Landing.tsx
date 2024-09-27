@@ -3,12 +3,13 @@ import styles from './styles.scss';
 import Caption from '../../components/caption/Caption';
 import PlayerDisplay from '../../components/player-display/PlayerDisplay';
 import PlayerSmallDisplay from '../../components/player-small-display/PlayerSmallDisplay';
+import NothingHerePage from '../../sections/nothing-here/Nothing';
 
 const LandingPage = () => {
   return (
     <div className={styles.container}>
       <Caption content="Hi Sruthy" />
-      <div className={styles.listen}>
+      {/* <div className={styles.listen}>
         <div className={styles.listenNow}>
           <div className={styles.title}>Listen Now:</div>
           <div className={styles.divider} />
@@ -25,7 +26,8 @@ const LandingPage = () => {
             <PlayerSmallDisplay title="Goa, Covid & Heartbreak." date='19 Sep, 2024' duration="20 min"/>
           </div>
         </div>
-      </div>
+      </div> */}
+      <NothingHerePage />
     </div>
   )
 }

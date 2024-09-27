@@ -8,7 +8,7 @@ const Preferences = () => {
     <div className={styles.container}>
       <div className={styles.caption}><Caption content='Preferences' /></div>
       <div className={styles.interestSection}>
-        <CustomizeSection buttonText='Save' />
+        <CustomizeSection buttonText='Save' goTo='/app' />
       </div>
     </div>
   )
