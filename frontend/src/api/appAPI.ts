@@ -13,8 +13,14 @@ export const appAPI = apiWithTag.injectEndpoints({
         url: `/user/${id}/podcasts`,
         method: 'GET'
       })
+    }),
+    getPodcastSources: builder.query({
+      query: ({ id}) => ({
+        url: `/podcast/${id}/sources`,
+        method: 'GET'
+      })
     })
   })
 })
 
-export const { useGetUserDetailsQuery, useGetUserPodcastQuery } = appAPI;
+export const { useGetUserDetailsQuery, useGetUserPodcastQuery, useGetPodcastSourcesQuery } = appAPI;
