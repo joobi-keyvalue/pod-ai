@@ -44,9 +44,20 @@ def create_topic_summary():
                     # Insert summary into the summary table
                     insert_query = """
                     INSERT INTO public.summary (summary_id, summary, "date", topic_id)
-                    VALUES (nextval('summary_summary_id_seq'::regclass), %s, NOW(), %s);
+                    VALUES (nextval('summary_summary_id_seq'::regclass), %s, NOW(), %s)
+                    RETURNING summary_id;;
                     """
                     cursor.execute(insert_query, (summary, topic[0]))  # topic[0] is assumed to be topic_id
+
+                    summary_id = cursor.fetchone()[0]  # Get the inserted summary_id
+
+                    # Insert URLs into the source table
+                    insert_source_query = """
+                    INSERT INTO public.source (source_id, source_url, summary_id)
+                    VALUES (nextval('source_source_id_seq'::regclass), %s, %s);
+                    """
+                    for url in urls:
+                        cursor.execute(insert_source_query, (url, summary_id))
                 else: 
                     print(f"Summary already exists for {topic[1]} topic. on {(today.strftime('%Y-%m-%d'))}")
             
@@ -115,9 +126,19 @@ def create_reddit_user_summary(userid = None):
                     insert_query = """
                     INSERT INTO public.personalized_summary 
                     (id, summary, "date", topic_id, user_id)
-                    VALUES (nextval('personalized_summary_id_seq'::regclass), %s, NOW(), %s, %s);
+                    VALUES (nextval('personalized_summary_id_seq'::regclass), %s, NOW(), %s, %s)
+                    RETURNING summary_id;;
                     """
                     cursor.execute(insert_query, (summary, topic_id, user_id))
+                    summary_id = cursor.fetchone()[0]  # Get the inserted summary_id
+
+                    # Insert URLs into the source table
+                    insert_source_query = """
+                    INSERT INTO public.source (source_id, source_url, summary_id)
+                    VALUES (nextval('source_source_id_seq'::regclass), %s, %s);
+                    """
+                    for url in urls:
+                        cursor.execute(insert_source_query, (url, summary_id))
                 else:
                     print(f"Summary already exists for Reddit topic for User {user_id} on {(today.strftime('%Y-%m-%d'))}")
             # Commit the transaction
