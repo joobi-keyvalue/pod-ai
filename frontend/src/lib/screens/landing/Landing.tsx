@@ -8,25 +8,31 @@ import NothingHerePage from "../../sections/nothing-here/Nothing";
 import styles from "./styles.scss";
 import { useDispatch } from "react-redux";
 import { removePodcast } from "../../../reducers/reducer";
-import { useGetUserDetailsQuery } from "../../../api/getDetailsAPI";
+import { useGetUserPodcastQuery } from '../../../api/appAPI';
+import Loader from '../../components/loader/Loader';
+import { months } from './dates';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userID = localStorage.getItem("userID");
-  console.log(userID);
-  const {data, error, isLoading} = useGetUserDetailsQuery({ id: userID });
-  useEffect(()=>{
-    console.log("helloooo");
-    console.log("data from get", data);
-  },[data]);
+  const userName = localStorage.getItem("userName");
+  const id = localStorage.getItem("userID");
+
+  const { data, isLoading } = useGetUserPodcastQuery({ id});
   const onPodcastClick = () => {
     dispatch(removePodcast());
     navigate("/app/player/:id");
   };
+
+  const getDate = (date: string) => {
+    const dateVal = new Date(date);
+
+    return `${dateVal.getDate()}  ${months[dateVal.getMonth()+1]}, ${dateVal.getFullYear()}`
+  }
   return (
+    <>
     <div className={styles.container}>
-      <Caption content="Hi Sruthy" />
+      <Caption content={`Hi ${userName}`} />
       <div className={styles.listen}>
         <div className={styles.listenNow}>
           <div className={styles.title}>Listen Now:</div>
@@ -43,7 +49,10 @@ const LandingPage = () => {
           <div className={styles.title}>Listen Again:</div>
           <div className={styles.divider} />
           <div className={styles.listenAgainPlaylist}>
-            <PlayerSmallDisplay
+            {data?.data?.map((podcast: any) => (
+              <PlayerSmallDisplay key={podcast.id} title={podcast.title || `${getDate(podcast.date)} Podcast`} date={getDate(podcast.date)} duration="1 min" />
+            ))}
+            {/* <PlayerSmallDisplay
               title="Goa, Covid & Heartbreak."
               date="19 Sep, 2024"
               duration="20 min"
@@ -57,12 +66,14 @@ const LandingPage = () => {
               title="Goa, Covid & Heartbreak."
               date="19 Sep, 2024"
               duration="20 min"
-            />
+            /> */}
           </div>
         </div>
       </div>
       {/* <NothingHerePage /> */}
     </div>
+    {isLoading && <Loader />}
+    </>
   );
 };
 

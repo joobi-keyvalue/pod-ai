@@ -17,17 +17,18 @@ const ProfileSetupSection: FC<{ buttonText?: string; goTo?: string }> = ({
   const navigate = useNavigate();
   const [createUser, { isSuccess, data }] = useCreateUserMutation();
   const { state } = useLocation();
-  const { phoneNumber = "1234567890" } = state || {};
+  const { phoneNumber = "1234567890", userDetails = {} } = state || {};
 
   useEffect(() => {
     if (data) {
-      localStorage.setItem("userID", data);
+      localStorage.setItem("userID", data.data.id);
+      localStorage.setItem("userName", data.data.name);
     }
   }, [data]);
 
   useEffect(() => {
     if (isSuccess) {
-      navigate(goTo);
+      navigate(goTo, { state: { userDetails: { ...userDetails}, phoneNumber }});
     }
   }, [isSuccess]);
   

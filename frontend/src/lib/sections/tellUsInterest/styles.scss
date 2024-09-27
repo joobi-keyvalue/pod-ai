@@ -33,13 +33,14 @@
     transition: all 0.3s;
     left: 0;
     padding: 50px;
-    width: calc(300px);
+    width: 290px;
     background: linear-gradient(187.28deg, rgba(153, 153, 144, 0) -71.17%, #FFFFF0 79.14%);
     button {
       transition: all 0.3s;
     }
     &.open {
-      bottom: 290px;
+      bottom: 240px;
+      padding-top: 20px;
       button {
         margin: 20px !important
       }

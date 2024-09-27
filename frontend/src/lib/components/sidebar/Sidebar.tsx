@@ -5,7 +5,7 @@ import styles from "./styles.scss";
 const menuItems = [
   { name: "Profile", link: "/app/profile" },
   { name: "Preferences", link: "/app/preferences" },
-  { name: "Liked Podcasts", link: "/liked-podcasts" },
+  { name: "Liked Podcasts", link: "/app/liked-podcasts" },
   { name: "Topics", link: "/app/topics" },
   { name: "Settings", link: "/app/settings" },
   { name: "Logout", link: "/logout" },

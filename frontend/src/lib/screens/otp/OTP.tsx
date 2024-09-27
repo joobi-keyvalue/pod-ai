@@ -38,6 +38,7 @@ const OTP = () => {
         : navigate("/onboarding/profile", {
             state: {
               phoneNumber,
+              userDetails
             },
           });
     } else {

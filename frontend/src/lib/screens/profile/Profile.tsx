@@ -5,23 +5,21 @@ import Button from '../../components/button/Button';
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-  const [image ,setImage] = useState('');
-  const name = 'Sruthy'
+  const name = localStorage.getItem("userName");
   const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <div className={styles.caption}><Caption content='Your Profile' /></div>
       <div className={styles.interestSection}>
       <div className={`${styles.image}`}>
-        {!image && (
+        
           <div>
             <img
               className={styles.placeholder}
-              src='assets/profile-placeholder.svg'
+              src='assets/profile.svg'
             />
             <input type='file' />
           </div>
-        )}
         <img src='assets/add-image.svg' className={styles.addImage} />
       </div>
       <div className={`${styles.name}`}>

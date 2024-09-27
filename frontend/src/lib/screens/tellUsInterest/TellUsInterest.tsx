@@ -6,7 +6,6 @@ import styles from './styles.scss';
 const TellUsInterest = () => {
   const navigate = useNavigate();
 
-
   
   return (
     <div className={styles.container}>

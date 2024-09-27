@@ -6,24 +6,42 @@ export const loginAPI = apiWithTag.injectEndpoints({
       query: (body) => ({
         url: '/login',
         method: 'POST',
-        body
-      })
+        body,
+      }),
     }),
     verifyOtp: builder.mutation({
       query: (body) => ({
         url: '/verify-otp',
         method: 'POST',
-        body
-      })
+        body,
+      }),
     }),
     createUser: builder.mutation({
       query: (body) => ({
         url: '/create-user',
         method: 'POST',
-        body
-      })
-    })
-  })
-})
+        body,
+      }),
+    }),
+    getTopics: builder.query({
+      query: () => ({
+        url: '/topics',
+      }),
+    }),
+    addTopic: builder.mutation({
+      query: ({ userId, ...body }) => ({
+        url: `/users/${userId}/topics`,
+        method: 'POST',
+        body,
+      }),
+    }),
+  }),
+});
 
-export const { useLoginMutation, useVerifyOtpMutation, useCreateUserMutation } = loginAPI;
+export const {
+  useLoginMutation,
+  useVerifyOtpMutation,
+  useCreateUserMutation,
+  useGetTopicsQuery,
+  useAddTopicMutation,
+} = loginAPI;
