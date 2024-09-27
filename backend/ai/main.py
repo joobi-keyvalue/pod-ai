@@ -1,5 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from models import Item
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI()
 
