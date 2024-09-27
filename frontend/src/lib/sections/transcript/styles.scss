@@ -1,0 +1,63 @@
+.container {
+  background-color: #FFFFF0;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  .header {
+    padding: 25px 35px 0;
+    display: flex;
+    width: calc(100% - 70px);
+    justify-content: space-between;
+    .hamburger {
+      width: 16px;
+      height: 14px;
+    }
+    .logo {
+      width: 94.1px;
+      height: 37px;
+    }
+  }
+  .caption {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 31px;
+  }
+  .sources {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  .sourceList {
+    border: 1px solid #FFA9A3;
+    background-color: #FFDDD1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: calc(100% - 110px);
+    margin: 20px 23px 0;
+    border-radius: 25px;
+    padding: 28px 30px;
+    .eachSource {
+      display: flex;
+      gap: 11px;
+      align-items: center;
+      img {
+        width: 36px;
+        height: 36px;
+      }
+      .text {
+        border-bottom: 2px solid #FFA9A3;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  .transcriptSection {
+    max-height: 200px;
+    overflow: scroll;
+    width: calc(100vw - 42px);
+    padding: 19px 21px;
+    line-height: 1.5;
+    background-color: #FFDDD1;
+  }
+}
