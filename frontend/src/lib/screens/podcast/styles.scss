@@ -1,0 +1,20 @@
+.podcastContainer{
+    background-color: #fffff0;
+    height: 690px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 45px;
+
+    .progress{
+        margin-top:10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+    }
+}
