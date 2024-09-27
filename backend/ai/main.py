@@ -17,7 +17,7 @@ def schedule_podcast_creation():
     requests.post("https://194d-103-138-236-18.ngrok-free.app/generate-tts")
 
 
-scheduler.add_job(schedule_podcast_creation, CronTrigger(hour=21, minute=28))
+scheduler.add_job(schedule_podcast_creation, CronTrigger(hour=0, minute=0))
     
 scheduler.start()
 
