@@ -10,14 +10,10 @@ import { getDate } from '../../utils/date';
 import Loader from '../../components/loader/Loader';
 
 const Podcast = () => {
-  const [like, setLike] = useState(false);
   const [stop, setStop] = useState(true);
   const { id } = useParams();
   const { data } = useGetPodcastByIdQuery({ id});
   const [showTranscript, setShowTranscript] = useState(false);
-  const handleLike = () => {
-    setLike((prev) => !prev);
-  };
   const handleShowTranscript = () => {
     setShowTranscript(true)
   };
@@ -29,8 +25,8 @@ const Podcast = () => {
         image={"assets/bear.svg"}
         title={`${getDate(data?.data?.date)} Podcast`}
         topics={["Animals", "Sports", "Climate"]}
-        handleLike={handleLike}
-        liked={like}
+        liked={data?.data?.is_liked}
+        id={data?.data?.id}
       />
 
       <div className={styles.progress}>

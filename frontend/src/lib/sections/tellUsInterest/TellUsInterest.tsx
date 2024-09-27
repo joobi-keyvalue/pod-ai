@@ -8,6 +8,7 @@ import Button from '../../components/button/Button';
 import BottomCallout from '../../components/bottom-callout/BottomCallout';
 import PhoneInput from '../../components/phone-input/PhoneInput';
 import { useAddTopicMutation, useGetTopicsQuery } from '../../../api/onBoardingAPI';
+import { useGetUserTopicsQuery } from '../../../api/appAPI';
 
 const TellUsInterestSection: FC<{ buttonText?: string, goTo?: string}>  = ( { buttonText= 'Continue', goTo = '/onboarding/customize'}) => {
   const navigate = useNavigate();
@@ -16,10 +17,11 @@ const TellUsInterestSection: FC<{ buttonText?: string, goTo?: string}>  = ( { bu
   const [options, setOptions] = useState<String[]>([]);
   const [optionsToShow, setOptionsToShow] = useState([]);
   const [open, setOpen] = useState(false);
-  const userId = localStorage.getItem('userID');
+  const id = localStorage.getItem('userID');
 
 
   const { data } = useGetTopicsQuery('');
+  const { data: topics } = useGetUserTopicsQuery({ id })
   const [addTopic, { isSuccess }] = useAddTopicMutation();
 
   useEffect(() => {
@@ -30,6 +32,12 @@ const TellUsInterestSection: FC<{ buttonText?: string, goTo?: string}>  = ( { bu
       setOptionsToShow(data?.data || [])
     }
   }, [search, data]);
+
+  useEffect(() => {
+    if (topics?.data?.length > 0) {
+      setOptions(topics.data?.map((e: any) => e.id))
+    }
+  },[topics])
 
   useEffect(() => {
     if (isSuccess) {
@@ -49,7 +57,7 @@ const TellUsInterestSection: FC<{ buttonText?: string, goTo?: string}>  = ( { bu
   }
   
   const onContinueClick = () => {
-    addTopic({ userId , topic_ids: [...options].map((e) => e.toString())})
+    addTopic({ userId: id , topic_ids: [...options].map((e) => e.toString())})
   }
 
   return (
@@ -73,9 +81,7 @@ magic guide your mornings...'
       <div className={styles.options}>
         {optionsToShow?.length > 0 && (optionsToShow?.map((option: {id: string, name: string}, index: number) => (
           <InterestBadge image={`assets/interests/${INTEREST_OPTIONS[index]}.svg`} text={option.name} onSelect={() =>{onOptionSelect(option.id)}} selected={options.indexOf(option.id) > -1} />
-        ))) || (
-          <div>Oops...</div>
-        )}
+        )))}
       </div>
       <div className={`${styles.bottomButton} ${open && styles.open}`}>
         <Button text={buttonText} disabled={options?.length === 0 && prompt.length === 0} onClick={onContinueClick} />

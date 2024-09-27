@@ -1,3 +1,4 @@
 export interface PodState {
-  audio: string
+  audio: string;
+  pause: boolean
 }

@@ -1,16 +1,18 @@
 import React, { FC } from "react";
 import styles from "./styles.scss";
 import LikeButton from "../like-button/LikeButton";
+import { useLikePodcastMutation } from '../../../api/appAPI';
 
 const PodcastDetails: FC<{
   image: string;
   title: string;
   topics: string[];
-  handleLike: any;
   liked: boolean;
-}> = ({ image, title, topics, handleLike, liked }) => {
+  id: string
+}> = ({ image, title, topics, liked, id }) => {
+  const [like] = useLikePodcastMutation();
   const handleClick = () => {
-    handleLike(!liked);
+    like({ id })
   };
   return (
     <div className={styles.podcastDetailsContainer}>

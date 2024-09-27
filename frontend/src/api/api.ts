@@ -22,7 +22,7 @@ export const podAPI = createApi({
 });
 
 const apiWithTag = podAPI.enhanceEndpoints({
-  addTagTypes: [],
+  addTagTypes: ['TOPICS', 'PODCASTS'],
 });
 
 export default apiWithTag;

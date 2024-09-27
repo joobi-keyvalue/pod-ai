@@ -27,6 +27,7 @@ export const loginAPI = apiWithTag.injectEndpoints({
       query: () => ({
         url: '/topics',
       }),
+      providesTags: ['TOPICS']
     }),
     addTopic: builder.mutation({
       query: ({ userId, ...body }) => ({
@@ -34,6 +35,7 @@ export const loginAPI = apiWithTag.injectEndpoints({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['TOPICS']
     }),
   }),
 });

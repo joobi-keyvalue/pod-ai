@@ -5,11 +5,12 @@ interface PlayerDisplayProType {
   image?: string;
   title: string;
   duration: string;
+  onClick?: () => void
 }
-const PlayerDisplay: FC<PlayerDisplayProType> = ({ image, title, duration}) => {
+const PlayerDisplay: FC<PlayerDisplayProType> = ({ image, title, duration, onClick}) => {
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={onClick}>
       <div className={styles.imageSection}>
         <img src={image} />
       </div>
