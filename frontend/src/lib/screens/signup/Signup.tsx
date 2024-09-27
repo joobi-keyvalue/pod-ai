@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import TextInput from '../../components/textInput/TextInput';
@@ -6,11 +6,26 @@ import styles from './styles.scss';
 import Button from '../../components/button/Button';
 import BottomCallout from '../../components/bottom-callout/BottomCallout';
 import PhoneInput from '../../components/phone-input/PhoneInput';
+import { useLoginMutation } from '../../../api/loginAPI';
 
 const SignUp = () => {
   const [open, setOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const navigate = useNavigate();
+  const [ login, { isSuccess }] = useLoginMutation(); 
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/onboarding/otp', {
+        state: {
+          phoneNumber
+        }
+      })
+    }
+  }, [isSuccess])
+  const onSignUpOrLogin = () => {
+    login({ phone_number: phoneNumber })
+  }
   return (
     <div className={styles.container}>
       <div className={styles.back} onClick={() => navigate('/onboarding/second')}>
@@ -41,11 +56,7 @@ const SignUp = () => {
         </i>
       </div>
       <div className={`${styles.bottomButton} ${open && styles.open}`}>
-        <Button text='Continue' disabled={phoneNumber?.length !== 10} onClick={() => navigate('/onboarding/otp', {
-          state: {
-            phoneNumber
-          }
-        })} />
+        <Button text='Continue' disabled={phoneNumber?.length !== 10} onClick={onSignUpOrLogin} />
       </div>
       <BottomCallout open={open}>
         <PhoneInput />

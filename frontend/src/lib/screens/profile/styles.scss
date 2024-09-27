@@ -17,7 +17,9 @@
     padding: 0 26px ;
   }
   .image {
-    padding-top: 43px;
+    padding-top: 23px;
+    width: 166px;
+    height: 166px;
     position: relative;
     .placeholder {
       width: 166px;
@@ -31,23 +33,36 @@
       width: 43px;
       height: 43px;
     }
+    input[type="file"] {
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
   }
   .name {
-    padding-top: 25px;
+    margin-top: 25px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 18px;
     border: 1px solid #FFA9A3;
     background-color: #FFDDD1;
     border-radius: 25px;
     width: 200px;
   }
   .accounts {
-    padding-top: 33px;
     .accountsTitle {
       font-size: 18px;
       color: #0F0F0F;
       width: 50%;
     }
     .accountSection {
-      margin-top: 35px;
+      margin-top: 25px;
       display: flex;
       gap: 33px;
       justify-content: center;
@@ -57,5 +72,14 @@
   .freePlan {
     width: 305px;
     height: 107px;
+  }.bottomButton
+  .bottomButton {
+    position:absolute;
+    bottom: 72px;
+    width: calc(100% - 48px);
+    transition: all 0.3s;
+    &.open {
+      bottom: 300px;
+    }
   }
 } 

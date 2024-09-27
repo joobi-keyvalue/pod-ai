@@ -28,7 +28,6 @@ const Profile = () => {
         {name}
       </div>
       <div className={styles.accounts}>
-        <div className={styles.accountsTitle}>Connect Your Accounts:</div>
         <div className={styles.accountSection}>
           <img src="assets/twitter.svg" />
           <img src="assets/reddit.svg" />
