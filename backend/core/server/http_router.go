@@ -1,10 +1,11 @@
 package server
 
 import (
+	"net/http"
+
 	"github.com/gorilla/mux"
 	"github.com/keycode/podai/auth"
 	"github.com/keycode/podai/podcast"
-	"net/http"
 )
 
 func initRouter(dependencies Dependencies) (router *mux.Router) {
@@ -17,6 +18,11 @@ func initRouter(dependencies Dependencies) (router *mux.Router) {
 
 	router.Handle("/podcast/{id}/like", podcast.HandleLikePodcast(dependencies.PodcastService)).Methods(
 		http.MethodPost,
+	)
+	
+
+	router.Handle("/podcast/{id}", podcast.HandleGetPodcastByID(dependencies.PodcastService)).Methods(
+		http.MethodGet,
 	)
 	
 	return
