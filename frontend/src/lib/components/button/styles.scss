@@ -4,11 +4,14 @@
   height: 64px;
   font-size: 16px;
   font-weight: 600;
-  min-width: 343px;
+  width: 100%;
   padding: 20px;
   text-align: center;
   border-radius: 30px;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   outline: none;
   &:focus {
     outline: none;
@@ -16,5 +19,8 @@
   &:disabled {
     background-color: #FFDDD1;
     color: #888888;
+  }
+  img {
+    margin-left: 8px;
   }
 }

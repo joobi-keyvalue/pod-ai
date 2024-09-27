@@ -3,6 +3,8 @@ backend/ai/__pycache__/
 backend/ai/.env
 frontend/node_modules
 .venv/
-__pycache__/
+backend/core/podai.log
+
 push.sh
+__pycache__/
 .idea

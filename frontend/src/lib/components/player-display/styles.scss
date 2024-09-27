@@ -1,0 +1,45 @@
+.container {
+  background-color: #FFDDD1;
+  padding: 7px;
+  height: 92px;
+  width: 276px;
+  display: flex;
+  border-radius: 25px;
+  border: 1px solid #FFA9A3;
+  gap: 15px;
+  position: relative;
+  .imageSection{
+    width: 108px;
+    height: 92px;
+    border-radius: 20px;
+    border: 1.5px solid #FFA9A3;
+    img {
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+  }
+  .details {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    gap: 18px;
+    .title {
+      color: #0F0F0F;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .duration {
+      color: #888888;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+  .play {
+    position: absolute;
+    right: 0;
+    bottom: -21px;
+    height: 42px;
+    width: 42px;
+  }
+}

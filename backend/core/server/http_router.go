@@ -19,6 +19,14 @@ func initRouter(dependencies Dependencies) (router *mux.Router) {
 		http.MethodGet,
 	)
 
+	router.Handle("/login", auth.HandleLogin(dependencies.AuthService)).Methods(
+		http.MethodPost,
+	)
+
+	router.Handle("/create-user", auth.HandleCreateUser(dependencies.AuthService)).Methods(
+		http.MethodPost,
+	)
+
 	router.Handle("/topics", topic.HandleGetAllTopics(dependencies.TopicService)).Methods(
 		http.MethodGet,
 	)
@@ -37,6 +45,14 @@ func initRouter(dependencies Dependencies) (router *mux.Router) {
 
 	router.Handle("/podcast/{id}", podcast.HandleGetPodcastByID(dependencies.PodcastService)).Methods(
 		http.MethodGet,
+	)
+
+	router.Handle("/podcasts", podcast.HandleGetPodcasts(dependencies.PodcastService)).Methods(
+        http.MethodGet,
+    )
+	
+	router.Handle("/verify-otp", auth.HandleVerifyOTP(dependencies.AuthService)).Methods(
+		http.MethodPost,
 	)
 
 	router.Handle("/generate-tts", tts.HandleStartTTS(dependencies.TTSService)).Methods(

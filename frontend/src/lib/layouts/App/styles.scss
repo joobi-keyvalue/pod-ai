@@ -2,6 +2,8 @@
   background-color: #FFFFF0;
   width: 100vw;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
   .header {
     padding: 25px 35px 0;
     display: flex;

@@ -72,3 +72,48 @@ func HandleGetPodcastByID(service Service) http.HandlerFunc {
 		})
 	})
 }
+
+func HandleGetPodcasts(service Service) http.HandlerFunc {
+	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+		ctx := req.Context()
+
+		// Parse query parameters
+		limit, err := strconv.Atoi(req.URL.Query().Get("limit"))
+		if err != nil || limit <= 0 {
+			limit = 10 // Default limit
+		}
+
+		offset, err := strconv.Atoi(req.URL.Query().Get("offset"))
+		if err != nil || offset < 0 {
+			offset = 0 // Default offset
+		}
+
+		isLiked, err := strconv.ParseBool(req.URL.Query().Get("is_liked"))
+		if err != nil {
+			isLiked = false
+		}
+
+		// Call the service to fetch podcasts
+		podcasts, err := service.GetPodcasts(ctx, limit, offset, isLiked)
+		if err != nil {
+			logger.Error(ctx, "error fetching podcasts", err.Error())
+			if err == constants.ErrPodcastNotFound {
+				api.RespondWithError(res, http.StatusNotFound, api.Response{
+					Error:        "podcast not found",
+					ResponseCode: api.NOT_FOUND,
+				})
+				return
+			}
+			api.RespondWithError(res, http.StatusInternalServerError, api.Response{
+				Error:        "error fetching podcasts",
+				ResponseCode: api.INTERNAL_ERROR,
+			})
+			return
+		}
+
+		// Respond with the podcasts data in JSON format
+		api.RespondWithJSON(res, http.StatusOK, api.Response{
+			Data: podcasts,
+		})
+	})
+}
