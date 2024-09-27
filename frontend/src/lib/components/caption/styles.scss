@@ -1,0 +1,20 @@
+.captionContainer{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    .circle{
+        border-radius: 50%;
+        background-color: #ffddd1;
+        height:60px;
+        width:60px;
+    }
+    .content{
+        margin-left:-30px;
+        color: #0f0f0f;
+        font-weight: 600;
+        font-size: 24px;
+    }
+
+}
