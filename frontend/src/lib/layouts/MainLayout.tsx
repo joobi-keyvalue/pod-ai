@@ -24,7 +24,7 @@ const MainLayout = () => {
               <Route path="/onboarding/otp" element={<OTP />}/>
               <Route path="/onboarding/profile" element={<ProfileSetup />} />
             </Route>
-            <Route path="/notFound" element={<NotFound/>} />
+            <Route path="/not-found" element={<NotFound/>} />
         </Routes>
       </Router>
     </div>
