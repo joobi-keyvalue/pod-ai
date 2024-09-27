@@ -63,8 +63,8 @@ func (s *service) GetPodcasts(ctx context.Context, limit, offset int, isLiked bo
 	}
 
 	podcasts = make([]dto.Podcast, len(storePodcasts))
-	for i, storePodcast := range storePodcasts {
-		podcasts[i] = dto.Podcast{
+	for _, storePodcast := range storePodcasts {
+		podcasts = append(podcasts, dto.Podcast{
 			PodcastID:  storePodcast.PodcastID,
 			Title:      storePodcast.Title,
 			Script:     storePodcast.Script,
@@ -73,7 +73,7 @@ func (s *service) GetPodcasts(ctx context.Context, limit, offset int, isLiked bo
 			UserID:     storePodcast.UserID,
 			IsLiked:    storePodcast.IsLiked,
 			AudioLink:  storePodcast.AudioLink,
-		}
+		})
 	}
 
 	return podcasts, nil
