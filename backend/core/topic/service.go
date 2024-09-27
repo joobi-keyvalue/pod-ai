@@ -48,6 +48,6 @@ func (s *service) CreateTopic(ctx context.Context, request createTopicRequest) (
 		return
 	}
 	err = ErrTopicAlreadyExists
-	logger.Info(ctx, "topic already exists", request.Name)
+	logger.Error(ctx, "topic already exists", request.Name)
 	return
 }

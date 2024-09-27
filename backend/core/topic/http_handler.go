@@ -38,9 +38,9 @@ func HandleCreateTopic(service Service) http.HandlerFunc {
 		topic, err := service.CreateTopic(req.Context(), request)
 		if err != nil {
 			if err == ErrTopicAlreadyExists {
-				logger.Error(req.Context(), "error creating topic", err.Error())
+				logger.Error(req.Context(), "topic already exists", err.Error())
 				api.RespondWithError(res, http.StatusBadRequest, api.Response{
-					Error: "error creating topic",
+					Error: "topic already exists",
 				})
 				return
 			}
