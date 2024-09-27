@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.scss';
 import TextInput from '../../components/textInput/TextInput';
@@ -8,7 +8,7 @@ import Button from '../../components/button/Button';
 import BottomCallout from '../../components/bottom-callout/BottomCallout';
 import PhoneInput from '../../components/phone-input/PhoneInput';
 
-const TellUsInterestSection = () => {
+const TellUsInterestSection: FC<{ buttonText?: string}>  = ( { buttonText= 'Continue'}) => {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [prompt, setPrompt] = useState('');
@@ -40,7 +40,7 @@ const TellUsInterestSection = () => {
       <div className={styles.tellUs}>
         <TextInput
           height='62px'
-          width='216px'
+          width='calc(100% - 58px)'
           onChange={setPrompt}
           type="textarea"
           padding="27px 29px"
@@ -61,7 +61,7 @@ magic guide your mornings...'
         )}
       </div>
       <div className={`${styles.bottomButton} ${open && styles.open}`}>
-        <Button text='Continue' margin="50px" disabled={options?.length === 0 && prompt.length === 0} onClick={() => navigate('/onboarding/customize')} />
+        <Button text={buttonText} disabled={options?.length === 0 && prompt.length === 0} onClick={() => navigate('/onboarding/customize')} />
       </div>
       <BottomCallout open={open}>
         <PhoneInput />

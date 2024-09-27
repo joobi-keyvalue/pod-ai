@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
-import styles from "./styles.scss";
+import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import styles from './styles.scss';
+import SmallPlayer from '../../components/small-player/SmallPlayer';
 import Sidebar from "../../components/sidebar/Sidebar";
 
 const AppLayout = () => {
@@ -20,6 +21,7 @@ const AppLayout = () => {
       </div>
       {isSidebarOpen && <Sidebar toggleSidebar={toggleSidebar} />}
       <Outlet />
+      {/* <SmallPlayer title="Bears, MMA & Global Warming." /> */}
     </div>
   );
 };
