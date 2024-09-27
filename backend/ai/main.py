@@ -14,7 +14,7 @@ def schedule_podcast_creation():
     create_topic_summary()
     create_reddit_user_summary()
     create_podcast_for_users()
-    requests.post("https://194d-103-138-236-18.ngrok-free.app/generate-tts")
+    requests.post("http://localhost:8181/generate-tts")
 
 
 scheduler.add_job(schedule_podcast_creation, CronTrigger(hour=0, minute=0))
