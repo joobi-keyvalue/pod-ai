@@ -84,7 +84,7 @@ func CheckIfSet(key string) {
 }
 
 func (dc databaseConfig) ConnectionURL() string {
-	return fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable", dc.user, dc.password, dc.host, dc.port, dc.dbName)
+	return fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=verify-full", dc.user, dc.password, dc.host, dc.port, dc.dbName)
 }
 
 func (dc databaseConfig) MaxPoolSize() int {
