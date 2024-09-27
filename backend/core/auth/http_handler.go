@@ -99,3 +99,32 @@ func HandleCreateUser(service Service) http.HandlerFunc {
 		})
 	})
 }
+
+func HandleVerifyOTP(service Service) http.HandlerFunc {
+	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+		var otp struct {
+			OTP string `json:"otp"`
+		}
+
+		err := json.NewDecoder(req.Body).Decode(&otp)
+		if err != nil {
+			logger.Error(req.Context(), "error reading request body", "error", err.Error())
+			api.RespondWithError(res, http.StatusBadRequest, api.Response{
+				Error: "error reading request body",
+			})
+			return
+		}
+
+		if otp.OTP != "1234" {
+			logger.Error(req.Context(), "invalid otp", "otp", otp.OTP)
+			api.RespondWithError(res, http.StatusBadRequest, api.Response{
+				Error: "invalid otp",
+			})
+			return
+		}
+
+		api.RespondWithJSON(res, http.StatusOK, api.Response{
+			Data: "otp verified",
+		})
+	})
+}
