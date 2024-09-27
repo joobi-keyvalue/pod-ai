@@ -5,6 +5,8 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from service import create_topic_summary, create_reddit_user_summary, create_podcast_for_users, create_podcast_for_new_user
 import requests
+from models import StringRequest
+from tools.openai import get_topic_from_prompt
 
 load_dotenv()
 
@@ -31,6 +33,13 @@ items = {}
 @app.post("/create-podcast/{userId}")
 async def create_item(userId: int):
     create_podcast_for_new_user(user_id=userId)
+
+
+@app.post("/process-prompt")
+def process_string(request: StringRequest):
+    prompt = request.prompt
+    return get_topic_from_prompt(prompt)
+    
 
 # # Read an item by ID
 # @app.get("/items/{item_id}")
