@@ -46,7 +46,7 @@ func (s *service) GetTopicByUserID(ctx context.Context, userID string) (topic []
 func triggerPodcastCreation(ctx context.Context, userID string) {
 	logger.Info(ctx, "triggering podcast creation")
 	triggerPodcastCreationBaseURL := config.ReadEnvString("TRIGGER_PODCAST_BASE_URL")
-	url := fmt.Sprintf("%screate-podcast/:%s", triggerPodcastCreationBaseURL, userID)
+	url := fmt.Sprintf("%screate-podcast/%s", triggerPodcastCreationBaseURL, userID)
 	fmt.Println("URL: ", url)
 	req, err := http.NewRequest("POST", url, nil)
 	if err != nil {
