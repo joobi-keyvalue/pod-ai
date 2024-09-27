@@ -1,17 +1,21 @@
 package server
 
 import (
+	"net/http"
+
 	"github.com/gorilla/mux"
 	"github.com/keycode/podai/auth"
+	"github.com/keycode/podai/topic"
+	"github.com/keycode/podai/userTopic"
+	"github.com/keycode/podai/podcast"
 	"github.com/keycode/podai/tts"
-	"net/http"
 )
 
 func initRouter(dependencies Dependencies) (router *mux.Router) {
 	router = mux.NewRouter()
 	router.StrictSlash(true)
 
-	router.Handle("/user/{id}", auth.HandleGetUserByID(dependencies.AuthService)).Methods(
+	router.Handle("/users/{id}", auth.HandleGetUserByID(dependencies.AuthService)).Methods(
 		http.MethodGet,
 	)
 
@@ -21,6 +25,26 @@ func initRouter(dependencies Dependencies) (router *mux.Router) {
 
 	router.Handle("/create-user", auth.HandleCreateUser(dependencies.AuthService)).Methods(
 		http.MethodPost,
+	)
+
+	router.Handle("/topics", topic.HandleGetAllTopics(dependencies.TopicService)).Methods(
+		http.MethodGet,
+	)
+
+	router.Handle("/users/{user_id}/topics", userTopic.HandleAddUserTopic(dependencies.UserTopicService)).Methods(
+		http.MethodPost,
+	)
+
+	router.Handle("/users/{user_id}/topics", userTopic.HandleGetUserTopics(dependencies.UserTopicService)).Methods(
+		http.MethodGet,
+	)
+
+	router.Handle("/podcast/{id}/like", podcast.HandleLikePodcast(dependencies.PodcastService)).Methods(
+		http.MethodPost,
+	)
+
+	router.Handle("/podcast/{id}", podcast.HandleGetPodcastByID(dependencies.PodcastService)).Methods(
+		http.MethodGet,
 	)
 
 	router.Handle("/generate-tts", tts.HandleStartTTS(dependencies.TTSService)).Methods(

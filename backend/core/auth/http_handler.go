@@ -17,6 +17,13 @@ func HandleGetUserByID(service Service) http.HandlerFunc {
 		userID, err := strconv.ParseInt(id, 10, 64)
 		user, err := service.GetUserByID(req.Context(), userID)
 		if err != nil {
+			if err == ErrUserNotFound {
+				logger.Error(req.Context(), "user not found", err.Error())
+				api.RespondWithError(res, http.StatusInternalServerError, api.Response{
+					Error: "user not found",
+				})
+				return
+			}
 			logger.Error(req.Context(), "error getting user", err.Error())
 			api.RespondWithError(res, http.StatusInternalServerError, api.Response{
 				Error: "error getting user",

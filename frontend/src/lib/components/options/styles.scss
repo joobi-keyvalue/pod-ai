@@ -1,0 +1,20 @@
+.options {
+  display: flex;
+  gap: 15px;
+  .eachOption {
+    border: 1px solid  #FFA9A3;
+    background-color: #FFDDD1;
+    color: #888888;
+    transition: all 0.3s;
+    height: 50px;
+    width: 134px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    &.selectedOption {
+      background-color: #FFA9A3;
+      color: #000000;
+    }
+  }
+}

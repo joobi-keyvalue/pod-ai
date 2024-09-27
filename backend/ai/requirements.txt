@@ -5,3 +5,4 @@ tavily-python
 newsapi-python
 openai
 python-dotenv
+psycopg2-binary
