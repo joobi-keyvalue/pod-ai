@@ -41,7 +41,11 @@ const SignUp = () => {
         </i>
       </div>
       <div className={`${styles.bottomButton} ${open && styles.open}`}>
-        <Button text='Continue' disabled={phoneNumber?.length !== 10} onClick={() => navigate('/onboarding/otp')} />
+        <Button text='Continue' disabled={phoneNumber?.length !== 10} onClick={() => navigate('/onboarding/otp', {
+          state: {
+            phoneNumber
+          }
+        })} />
       </div>
       <BottomCallout open={open}>
         <PhoneInput />

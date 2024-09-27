@@ -19,40 +19,31 @@
     margin-left: 71px;
     margin-top: 18px;
   }
-  .textContainer {
-    margin: 54px 17px 0;
-  }
-  .or {
-    margin-top: 21px;
-    text-align: center;
-    width: 100%;
-    color: #888888;
-  }
-  .iconGroups {
-    margin-top: 18px;
+  .duration {
+    margin-top: 62px;
+    width: calc(100% - 40px);
+    text-align: left;
     display: flex;
-    gap: 30px;
-    height: 47px;
-    img {
-      width: 47px;
-      height: 47px;
-    }
+    flex-direction: column;
+    gap: 22px;
+    align-items: center;
+    
   }
-  .terms {
-    padding: 26px 70px 20px;
-    font-size: 12px;
-    text-align: center;
-    color: #888888;
-    .underliner {
-      text-decoration: underline;
-    }
+  .tone {
+    margin-top: 46px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: calc(100% - 40px);
+  }
+  .sectionTitle {
+    font-size: 16px;
+    color: #0F0F0F;
+    width: 100%;
   }
   .bottomButton {
     position:absolute;
     bottom: 72px;
     transition: all 0.3s;
-    &.open {
-      bottom: 300px;
-    }
   }
 }

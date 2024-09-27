@@ -113,10 +113,10 @@ module.exports = {
     }),
     new webpack.BannerPlugin(banner),
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html",
-      favicon: "./assets/favicon.svg",
-    }),
+      template: './src/index.html',
+      filename: './index.html',
+      favicon: './assets/favicon.svg'
+    })
   ],
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
