@@ -13,13 +13,14 @@ const SignUp = () => {
   const [open, setOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const navigate = useNavigate();
-  const [ login, { isSuccess }] = useLoginMutation(); 
+  const [ login, { isSuccess, data }] = useLoginMutation(); 
 
   useEffect(() => {
     if (isSuccess) {
       navigate('/onboarding/otp', {
         state: {
-          phoneNumber
+          phoneNumber,
+          userDetails:data,
         }
       })
     }
