@@ -30,7 +30,7 @@ const Podcast = () => {
           }
         />
       </div>
-      <div onClick={handleShowTranscript}>
+      <div onClick={handleShowTranscript} className={styles.downIcon}>
         <img src="assets/down-icon.svg" />
       </div>
     </div>
