@@ -5,9 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 45px;
+    margin-top: 27px;
 
     .progress{
         margin-top:10px;
@@ -16,5 +14,9 @@
         align-items: center;
 
 
+    }
+
+    .downIcon{
+        margin-top: 39px;
     }
 }
