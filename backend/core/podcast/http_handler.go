@@ -76,7 +76,8 @@ func HandleGetPodcastByID(service Service) http.HandlerFunc {
 func HandleGetPodcasts(service Service) http.HandlerFunc {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		ctx := req.Context()
-
+		vars := mux.Vars(req)
+		userID := vars["user_id"]
 		// Parse query parameters
 		limit, err := strconv.Atoi(req.URL.Query().Get("limit"))
 		if err != nil || limit <= 0 {
@@ -94,7 +95,7 @@ func HandleGetPodcasts(service Service) http.HandlerFunc {
 		}
 
 		// Call the service to fetch podcasts
-		podcasts, err := service.GetPodcasts(ctx, limit, offset, isLiked)
+		podcasts, err := service.GetPodcasts(ctx, userID, limit, offset, isLiked)
 		if err != nil {
 			logger.Error(ctx, "error fetching podcasts", err.Error())
 			if err == constants.ErrPodcastNotFound {
@@ -114,6 +115,44 @@ func HandleGetPodcasts(service Service) http.HandlerFunc {
 		// Respond with the podcasts data in JSON format
 		api.RespondWithJSON(res, http.StatusOK, api.Response{
 			Data: podcasts,
+		})
+	})
+}
+
+func HandleGetSourcesByPodcastID(service Service) http.HandlerFunc {
+	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+		ctx := req.Context()
+		vars := mux.Vars(req)
+		id := vars["id"]
+		podcastID, err := strconv.ParseInt(id, 10, 64)
+		if err != nil {
+			logger.Error(ctx, "invalid podcast ID", err.Error(), "podcast_id", id)
+			api.RespondWithError(res, http.StatusBadRequest, api.Response{
+				Error:        "invalid podcast ID",
+				ResponseCode: api.BAD_REQUEST,
+			})
+			return
+		}
+
+		sources, err := service.GetSourcesByPodcastID(ctx, podcastID)
+		if err != nil {
+			logger.Error(ctx, "error fetching sources by podcast ID", err.Error(), "podcast_id", id)
+			if err == constants.ErrSourcesNotFound {
+				api.RespondWithError(res, http.StatusNotFound, api.Response{
+					Error:        "sources not found",
+					ResponseCode: api.NOT_FOUND,
+				})
+				return
+			}
+			api.RespondWithError(res, http.StatusInternalServerError, api.Response{
+				Error:        "error fetching sources by podcast ID",
+				ResponseCode: api.INTERNAL_ERROR,
+			})
+			return
+		}
+
+		api.RespondWithJSON(res, http.StatusOK, api.Response{
+			Data: sources,
 		})
 	})
 }

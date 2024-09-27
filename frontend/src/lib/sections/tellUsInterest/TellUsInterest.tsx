@@ -8,7 +8,7 @@ import Button from '../../components/button/Button';
 import BottomCallout from '../../components/bottom-callout/BottomCallout';
 import PhoneInput from '../../components/phone-input/PhoneInput';
 
-const TellUsInterestSection: FC<{ buttonText?: string}>  = ( { buttonText= 'Continue'}) => {
+const TellUsInterestSection: FC<{ buttonText?: string, goTo?: string}>  = ( { buttonText= 'Continue', goTo = '/onboarding/customize'}) => {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [prompt, setPrompt] = useState('');
@@ -61,7 +61,7 @@ magic guide your mornings...'
         )}
       </div>
       <div className={`${styles.bottomButton} ${open && styles.open}`}>
-        <Button text={buttonText} disabled={options?.length === 0 && prompt.length === 0} onClick={() => navigate('/onboarding/customize')} />
+        <Button text={buttonText} disabled={options?.length === 0 && prompt.length === 0} onClick={() => navigate(goTo)} />
       </div>
       <BottomCallout open={open}>
         <PhoneInput />

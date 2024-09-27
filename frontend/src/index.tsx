@@ -10,11 +10,6 @@ import './index.css';
 import MainLayout from './lib/layouts/MainLayout';
 import { podAPI } from './api/api';
 
-const preloadedState = {
-  common: {
-    value: 10
-  }
-};
 
 const debounceNotify = _.debounce((notify: () => void) => notify())
 const store = configureStore({
@@ -24,7 +19,6 @@ const store = configureStore({
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger).concat(podAPI.middleware),
   devTools: process.env.NODE_ENV !== 'production',
-  preloadedState,
   enhancers: [batchedSubscribe(debounceNotify)],
 });
 

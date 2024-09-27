@@ -11,7 +11,8 @@ import (
 type Service interface {
 	LikePodcast(ctx context.Context, podcastID int64) (err error)
 	GetPodcastByID(ctx context.Context, podcastID int64) (podcast dto.Podcast, err error)
-	GetPodcasts(ctx context.Context, limit, offset int, isLiked bool) (podcasts []dto.Podcast, err error)
+	GetSourcesByPodcastID(ctx context.Context, podcastID int64) (sources []string, err error)
+	GetPodcasts(ctx context.Context, userID string, limit, offset int, isLiked bool) (podcasts []dto.Podcast, err error)
 }
 
 type service struct {
@@ -55,8 +56,8 @@ func (s *service) GetPodcastByID(ctx context.Context, podcastID int64) (podcast 
 	return
 }
 
-func (s *service) GetPodcasts(ctx context.Context, limit, offset int, isLiked bool) (podcasts []dto.Podcast, err error) {
-	storePodcasts, err := s.podcastStore.GetPodcasts(ctx, limit, offset, isLiked)
+func (s *service) GetPodcasts(ctx context.Context, userID string, limit, offset int, isLiked bool) (podcasts []dto.Podcast, err error) {
+	storePodcasts, err := s.podcastStore.GetPodcasts(ctx, userID, limit, offset, isLiked)
 	if err != nil {
 		logger.Error(ctx, "error getting podcasts", err.Error())
 		return nil, err
@@ -77,4 +78,14 @@ func (s *service) GetPodcasts(ctx context.Context, limit, offset int, isLiked bo
 	}
 
 	return podcasts, nil
+}
+
+func (s *service) GetSourcesByPodcastID(ctx context.Context, podcastID int64) (sources []string, err error) {
+	storeSources, err := s.podcastStore.GetSourcesByPodcastID(ctx, podcastID)
+	if err != nil {
+		logger.Error(ctx, "error getting sources by podcast ID", err.Error())
+		return nil, err
+	}
+
+	return storeSources, nil
 }

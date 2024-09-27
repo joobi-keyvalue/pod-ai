@@ -1,0 +1,18 @@
+.container {
+    padding-top: 45px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 45px;
+    position: relative;
+    height: calc(100vh - 62px);
+    .caption {
+      padding: 0 26px ;
+    }
+    .likedSection{
+      display: flex;
+      flex-direction: column;
+      margin-top: 40px;
+      gap: 50px;
+      padding: 0 26px ;
+    }
+  }

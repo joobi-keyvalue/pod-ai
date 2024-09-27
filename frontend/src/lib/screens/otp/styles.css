@@ -1,0 +1,21 @@
+.toast {
+  width: 90%;
+}
+
+.Toastify__toast--default {
+  max-width: 80%;
+  height: 50px;
+  min-height: 50px;
+  margin: 10px;
+  margin-left: 80px;
+  background-color: #ff000030;
+  z-index: 99999;
+}
+
+.Toastify__progress-bar-theme--light {
+  background: none;
+}
+
+.Toastify__progress-bar--default {
+  background-color: #ff000090;
+}

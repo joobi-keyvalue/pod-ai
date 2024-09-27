@@ -6,19 +6,21 @@ import styles from './styles.scss';
 import Button from '../../components/button/Button';
 import BottomCallout from '../../components/bottom-callout/BottomCallout';
 import PhoneInput from '../../components/phone-input/PhoneInput';
-import { useLoginMutation } from '../../../api/loginAPI';
+import { useLoginMutation } from '../../../api/onBoardingAPI';
+import Loader from '../../components/loader/Loader';
 
 const SignUp = () => {
   const [open, setOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const navigate = useNavigate();
-  const [ login, { isSuccess }] = useLoginMutation(); 
+  const [ login, { isSuccess, data, isLoading }] = useLoginMutation(); 
 
   useEffect(() => {
     if (isSuccess) {
       navigate('/onboarding/otp', {
         state: {
-          phoneNumber
+          phoneNumber,
+          userDetails:data,
         }
       })
     }
@@ -26,7 +28,9 @@ const SignUp = () => {
   const onSignUpOrLogin = () => {
     login({ phone_number: phoneNumber })
   }
+
   return (
+    <>
     <div className={styles.container}>
       <div className={styles.back} onClick={() => navigate('/onboarding/second')}>
         <img src='assets/back.svg' />
@@ -62,6 +66,8 @@ const SignUp = () => {
         <PhoneInput />
       </BottomCallout>
     </div>
+    {isLoading && <Loader />}
+    </>
   );
 };
 

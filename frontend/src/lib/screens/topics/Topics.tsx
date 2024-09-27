@@ -8,7 +8,7 @@ const Topics = () => {
     <div className={styles.container}>
       <div className={styles.caption}><Caption content='Set Topics' /></div>
       <div className={styles.interestSection}>
-        <TellUsInterestSection buttonText='Save' />
+        <TellUsInterestSection buttonText='Save' goTo='/app' />
       </div>
     </div>
   )

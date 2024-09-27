@@ -1,5 +1,5 @@
 import commonReducer from './reducer';
 
-const reducer = { common: commonReducer };
+const reducer = { pod: commonReducer };
 
 export default reducer;

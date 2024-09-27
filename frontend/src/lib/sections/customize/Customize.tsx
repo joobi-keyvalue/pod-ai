@@ -7,7 +7,7 @@ import Select from '../../components/select/Select';
 import Options from '../../components/options/Options';
 import Button from '../../components/button/Button';
 
-const CustomizeSection: FC<{ buttonText?: string}> = ( { buttonText = 'Continue '}) => {
+const CustomizeSection: FC<{ buttonText?: string, goTo?: string}> = ( { buttonText = 'Continue', goTo = '/onboarding/final'}) => {
   const navigate = useNavigate();
   
   return (
@@ -25,7 +25,7 @@ const CustomizeSection: FC<{ buttonText?: string}> = ( { buttonText = 'Continue 
         <Options optionValues={[{ value: 'Convo', label: 'Convo'}, { value: 'Dictate', label: 'Dictate'}]} />
       </div>
       <div className={`${styles.bottomButton}`}>
-        <Button text={buttonText} onClick={() => navigate('/onboarding/final')} />
+        <Button text={buttonText} onClick={() => navigate(goTo)} />
       </div>
     </>
   );
