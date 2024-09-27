@@ -3,11 +3,7 @@ APP_PORT: 8181
 
 
 # Postgres DB
-<<<<<<< Updated upstream
 DB_HOST: dpg-crr20io8fa8c739fpulg-a.singapore-postgres.render.com
-=======
-DB_HOST: postgresql://podai_user:8i1bNdzK5jPCzv6152ff9MnJOPQMFHsC@dpg-crr20io8fa8c739fpulg-a.singapore-postgres.render.com/podai
->>>>>>> Stashed changes
 DB_PORT: 5432
 DB_NAME: podai
 DB_USER: podai_user
