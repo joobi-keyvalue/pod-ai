@@ -1,0 +1,60 @@
+.rhap_container {
+  background-color: #fffff0;
+  border: none;
+  box-shadow: none;
+  gap: 20px;
+}
+
+.rhap_time {
+  color: #888888;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.rhap_current-time {
+  margin-left: -10px;
+}
+
+.rhap_total-time {
+    margin-left: -30px;
+}
+.rhap_progress-bar-show-download {
+  background-color: #ffa9a3;
+}
+
+.rhap_progress-indicator {
+  background: #fffff0;
+  border-width: 1px;
+  border-color: #ffa9a3;
+  border-style: solid;
+}
+
+/* .rhap_progress-bar{
+    width: 266px;
+} */
+.rhap_download-progress {
+  background-color: #ffddd1;
+  border-radius: 1%;
+}
+.rhap_progress-filled {
+  background-color: #ffa9a3;
+}
+
+.rhap_progress-bar-show-download {
+  margin-top: -50px;
+  margin-left: -34px;
+  min-width: 266px;
+}
+.rhap_main-controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.rhap_main-controls-button {
+  color: #ffa9a3;
+}
+
+.rhap_progress-container {
+  margin: 0px;
+  width: 226px;
+}
