@@ -1,0 +1,21 @@
+.container {
+  padding: 27px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 43px;
+}
+
+.nothingHereImage {
+  display: flex;
+  height: 275px;
+  margin-left: -40px;
+  margin-right: -40px;
+}
+
+.nothingHereText{
+  color: #888888;
+  margin-top: 160px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+}
