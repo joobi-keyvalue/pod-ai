@@ -5,10 +5,10 @@ import styles from "./styles.scss";
 import Button from "../../components/button/Button";
 import BottomCallout from "../../components/bottom-callout/BottomCallout";
 import PhoneInput from "../../components/phone-input/PhoneInput";
-import { useVerifyOtpMutation } from "../../../api/verifyOtpAPI";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./styles.css";
+import { useVerifyOtpMutation } from '../../../api/onBoardingAPI';
 
 const OTP = () => {
   const [open, setOpen] = useState(false);

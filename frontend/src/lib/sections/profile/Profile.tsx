@@ -5,7 +5,7 @@ import TextInput from "../../components/textInput/TextInput";
 import Button from "../../components/button/Button";
 import BottomCallout from "../../components/bottom-callout/BottomCallout";
 import PhoneInput from "../../components/phone-input/PhoneInput";
-import { useCreateUserMutation } from "../../../api/createUserAPI";
+import { useCreateUserMutation } from '../../../api/onBoardingAPI';
 
 const ProfileSetupSection: FC<{ buttonText?: string; goTo?: string }> = ({
   buttonText = "Continue",
