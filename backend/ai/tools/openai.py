@@ -2,6 +2,7 @@
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
+from database import get_connection
 
 
 load_dotenv()
@@ -97,3 +98,44 @@ def convert_to_ssml(content):
     )
     print(response.choices[0].message.content.strip())
     return response.choices[0].message.content.strip()
+
+def get_topic_string():
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT name FROM topic;")
+    topics = cursor.fetchall()
+    cursor.close()
+    connection.close()
+
+    # Extracting just the first element (name) from each tuple
+    topic_list = [topic[0] for topic in topics]
+    print(topic_list)
+    return topic_list
+
+def get_topic_from_prompt(content):
+
+    existing_topics = get_topic_string()
+    prompt = (
+    'You are a specialized bot designed to infer topics from content. '
+    'Your task is to take the provided content and infer the topic. '
+    'Please follow these guidelines: '
+    '- The content is a string of text that may contain multiple topics. '
+    '- Your task is to identify the multiple topics from the content. '
+    '- Your output must contain the json with a list of existing topics which is present in the content and a list of inferred . '
+    '- Ensure each topic is a single word or a maximum of three words. '
+    '- Also check whether the topic is already present in the list of existing topics'
+    '- Expected Input: '
+    '- Content: "I am a GoLang developer with an intrest in Indian Stock Market"'
+    '- Existing topics: ["Go Lang", "Java", "Dance"]'
+    '- Expected Output: {"existing_topics: ["GoLang""], "inferred_topic": ["Indian Stock Market"]}'
+    'Now, infer the topic from the following content: '
+    f'Content: {content} ,'
+    f'Existing Content: {existing_topics}'
+)
+    response = openai_client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": prompt}],
+    )
+    print(response.choices[0].message.content.strip())
+    return response.choices[0].message.content.strip()
+

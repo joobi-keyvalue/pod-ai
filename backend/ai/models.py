@@ -5,3 +5,7 @@ class Item(BaseModel):
     name: str
     description: str = None
     price: float
+
+
+class StringRequest(BaseModel):
+    prompt: str
