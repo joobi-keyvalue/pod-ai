@@ -4,5 +4,6 @@ export interface TextInputPropType {
   width?: string;
   height?: string;
   type?: string;
-  onClick?: () => void
+  onClick?: () => void;
+  onChange?: (val: string) => void
 }
