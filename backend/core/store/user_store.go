@@ -5,8 +5,9 @@ import (
 )
 
 type User struct {
-	ID   int64  `db:"id"`
-	Name string `db:"name"`
+	ID          int64  `db:"user_id" json:"id"`
+	Name        string `db:"name" json:"name"`
+	PhoneNumber string `db:"phone_number" json:"phone_number"`
 }
 
 func (s *userStore) GetByID(ctx context.Context, userID int64) (u User, err error) {

@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import styles from './styles.scss';
 
-const Button:FC<{text: string, disabled?: boolean }> = ({text, disabled}) => {
+const Button:FC<{text: string, disabled?: boolean, onClick?: () => void }> = ({text, disabled, onClick}) => {
   return (
-    <button className={styles.button} disabled={disabled}>{text}</button>
+    <button className={styles.button} disabled={disabled} onClick={onClick}>{text}</button>
   )
 };
 
