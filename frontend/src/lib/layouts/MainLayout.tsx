@@ -11,6 +11,7 @@ import OTP from '../screens/otp/OTP';
 import NotFound from '../screens/not-found/NotFound';
 import TellUsInterest from '../screens/tellUsInterest/TellUsInterest';
 import Customize from '../screens/customize/Customize';
+import AppLayout from './App/App';
 
 const MainLayout = () => {
   return (
@@ -29,6 +30,8 @@ const MainLayout = () => {
               <Route path="/onboarding/customize" element={<Customize />}/>
             </Route>
             <Route path="/not-found" element={<NotFound/>} />
+            <Route path="/app" element={<AppLayout />}>
+            </Route>
         </Routes>
       </Router>
     </div>
