@@ -7,6 +7,7 @@ import Button from '../../components/button/Button';
 import BottomCallout from '../../components/bottom-callout/BottomCallout';
 import PhoneInput from '../../components/phone-input/PhoneInput';
 import { useLoginMutation } from '../../../api/loginAPI';
+import Loader from '../../components/loader/Loader';
 
 const SignUp = () => {
   const [open, setOpen] = useState(false);
@@ -26,7 +27,9 @@ const SignUp = () => {
   const onSignUpOrLogin = () => {
     login({ phone_number: phoneNumber })
   }
+
   return (
+    <>
     <div className={styles.container}>
       <div className={styles.back} onClick={() => navigate('/onboarding/second')}>
         <img src='assets/back.svg' />
@@ -62,6 +65,8 @@ const SignUp = () => {
         <PhoneInput />
       </BottomCallout>
     </div>
+    <Loader />
+    </>
   );
 };
 
