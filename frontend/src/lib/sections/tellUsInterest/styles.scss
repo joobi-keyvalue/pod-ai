@@ -22,7 +22,6 @@
   }
   .options {
     margin-top: 31px;
-    width: 285px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 21px;
@@ -32,6 +31,9 @@
     position:absolute;
     bottom: 14px;
     transition: all 0.3s;
+    left: 0;
+    padding: 50px;
+    width: calc(300px);
     background: linear-gradient(187.28deg, rgba(153, 153, 144, 0) -71.17%, #FFFFF0 79.14%);
     button {
       transition: all 0.3s;

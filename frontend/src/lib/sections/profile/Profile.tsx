@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.scss';
 import TextInput from '../../components/textInput/TextInput';
@@ -6,7 +6,7 @@ import Button from '../../components/button/Button';
 import BottomCallout from '../../components/bottom-callout/BottomCallout';
 import PhoneInput from '../../components/phone-input/PhoneInput';
 
-const ProfileSetupSection = () => {
+const ProfileSetupSection :FC<{ buttonText?: string}> = ({ buttonText = 'Continue'}) => {
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
   const [open, setOpen] = useState(false);
@@ -41,7 +41,7 @@ const ProfileSetupSection = () => {
         </div>
       </div>
       <div className={`${styles.bottomButton} ${open && styles.open}`}>
-        <Button text='Continue' disabled={name?.length === 0} onClick={() => navigate('/onboarding/interest')} />
+        <Button text={buttonText} disabled={name?.length === 0} onClick={() => navigate('/onboarding/interest')} />
       </div>
       <BottomCallout open={open}>
         <PhoneInput />

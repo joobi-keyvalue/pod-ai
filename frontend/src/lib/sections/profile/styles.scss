@@ -3,6 +3,8 @@
     padding-top: 39px;
     position: relative;
     transition: all 0.3s;
+    width: 195px;
+    height: 195px;
     div {
       position: relative;
     }
@@ -53,6 +55,7 @@
   .bottomButton {
     position:absolute;
     bottom: 72px;
+    width: calc(100% - 48px);
     transition: all 0.3s;
     &.open {
       bottom: 300px;

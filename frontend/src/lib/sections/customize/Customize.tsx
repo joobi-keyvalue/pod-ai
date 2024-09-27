@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.scss';
 import Slider from '../../components/slider/Slider';
@@ -7,7 +7,7 @@ import Select from '../../components/select/Select';
 import Options from '../../components/options/Options';
 import Button from '../../components/button/Button';
 
-const CustomizeSection = () => {
+const CustomizeSection: FC<{ buttonText?: string}> = ( { buttonText = 'Continue '}) => {
   const navigate = useNavigate();
   
   return (
@@ -25,7 +25,7 @@ const CustomizeSection = () => {
         <Options optionValues={[{ value: 'Convo', label: 'Convo'}, { value: 'Dictate', label: 'Dictate'}]} />
       </div>
       <div className={`${styles.bottomButton}`}>
-        <Button text='Continue' onClick={() => navigate('/onboarding/final')} />
+        <Button text={buttonText} onClick={() => navigate('/onboarding/final')} />
       </div>
     </>
   );

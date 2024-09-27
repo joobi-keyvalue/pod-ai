@@ -1,0 +1,61 @@
+.container {
+  padding-top: 45px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 45px;
+  position: relative;
+  height: calc(100vh - 62px);
+  .interestSection {
+    margin-top: 10px;
+    width: calc(100% - 48px);
+    padding: 0 26px ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .caption {
+    padding: 0 26px ;
+  }
+  .image {
+    padding-top: 43px;
+    position: relative;
+    .placeholder {
+      width: 166px;
+      height: 166px;
+      border-radius: 50%;
+    }
+    .addImage {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 43px;
+      height: 43px;
+    }
+  }
+  .name {
+    padding-top: 25px;
+    border: 1px solid #FFA9A3;
+    background-color: #FFDDD1;
+    border-radius: 25px;
+    width: 200px;
+  }
+  .accounts {
+    padding-top: 33px;
+    .accountsTitle {
+      font-size: 18px;
+      color: #0F0F0F;
+      width: 50%;
+    }
+    .accountSection {
+      margin-top: 35px;
+      display: flex;
+      gap: 33px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+  }
+  .freePlan {
+    width: 305px;
+    height: 107px;
+  }
+} 
