@@ -56,3 +56,15 @@ func (s *podcastStore) GetPodcasts(ctx context.Context, limit, offset int, isLik
 
 	return podcasts, nil
 }
+
+func (s *podcastStore) GetSourcesByPodcastID(ctx context.Context, podcastID int64) (sources []string, err error) {
+	err = s.db.SelectContext(ctx, &sources, getSourcesByPodcastIDQuery, podcastID)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, constants.ErrSourcesNotFound
+		}
+		return nil, err
+	}
+
+	return sources, nil
+}

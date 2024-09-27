@@ -27,4 +27,14 @@ const (
 		ORDER BY date DESC
 		LIMIT $1 OFFSET $2
 	`
+
+	getSourcesByPodcastIDQuery = `
+		SELECT source_url
+		FROM source
+		WHERE summary_id = (
+			SELECT summary_id
+			FROM summary_podcast
+			WHERE podcast_id = $1
+		)
+	`
 )

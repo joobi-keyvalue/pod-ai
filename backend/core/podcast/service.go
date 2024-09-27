@@ -12,6 +12,7 @@ type Service interface {
 	LikePodcast(ctx context.Context, podcastID int64) (err error)
 	GetPodcastByID(ctx context.Context, podcastID int64) (podcast dto.Podcast, err error)
 	GetPodcasts(ctx context.Context, limit, offset int, isLiked bool) (podcasts []dto.Podcast, err error)
+	GetSourcesByPodcastID(ctx context.Context, podcastID int64) (sources []string, err error)
 }
 
 type service struct {
@@ -77,4 +78,14 @@ func (s *service) GetPodcasts(ctx context.Context, limit, offset int, isLiked bo
 	}
 
 	return podcasts, nil
+}
+
+func (s *service) GetSourcesByPodcastID(ctx context.Context, podcastID int64) (sources []string, err error) {
+	storeSources, err := s.podcastStore.GetSourcesByPodcastID(ctx, podcastID)
+	if err != nil {
+		logger.Error(ctx, "error getting sources by podcast ID", err.Error())
+		return nil, err
+	}
+
+	return storeSources, nil
 }

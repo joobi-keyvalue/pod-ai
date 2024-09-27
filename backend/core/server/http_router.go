@@ -48,9 +48,13 @@ func initRouter(dependencies Dependencies) (router *mux.Router) {
 	)
 
 	router.Handle("/podcasts", podcast.HandleGetPodcasts(dependencies.PodcastService)).Methods(
-        http.MethodGet,
-    )
-	
+		http.MethodGet,
+	)
+
+	router.Handle("/podcast/{id}/sources", podcast.HandleGetSourcesByPodcastID(dependencies.PodcastService)).Methods(
+		http.MethodGet,
+	)
+
 	router.Handle("/verify-otp", auth.HandleVerifyOTP(dependencies.AuthService)).Methods(
 		http.MethodPost,
 	)
