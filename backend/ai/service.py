@@ -6,7 +6,14 @@ from tools.openai import summarize_topic
 from tools.reddit import fetch_reddit_urls
 from tools.openai import script_generator, convert_to_ssml
 
+
 today = datetime.datetime.now()
+
+
+def create_podcast_for_new_user(user_id):
+    create_topic_summary()
+    create_reddit_user_summary(user_id)
+    create_podcast_for_users(user_id)
 
 
 def create_topic_summary():
