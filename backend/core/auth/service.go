@@ -2,12 +2,13 @@ package auth
 
 import (
 	"context"
+	"database/sql"
 	"github.com/keycode/podai/logger"
 	"github.com/keycode/podai/store"
 )
 
 type Service interface {
-	GetUser(ctx context.Context, userID int64) (user string, err error)
+	GetUserByID(ctx context.Context, userID int64) (user store.User, err error)
 }
 
 type service struct {
@@ -20,13 +21,14 @@ func NewService(userStore store.UserStorer) Service {
 	}
 }
 
-func (s *service) GetUser(ctx context.Context, userID int64) (user string, err error) {
-	u, err := s.userStore.GetByID(ctx, userID)
+func (s *service) GetUserByID(ctx context.Context, userID int64) (user store.User, err error) {
+	user, err = s.userStore.GetByID(ctx, userID)
 	if err != nil {
+		if err == sql.ErrNoRows {
+			err = ErrUserNotFound
+		}
 		logger.Error(ctx, "error fetching user", err.Error())
 		return
 	}
-	logger.Info(ctx, "ivde ethi", u.Name, u.ID)
-
-	return u.Name, nil
+	return
 }

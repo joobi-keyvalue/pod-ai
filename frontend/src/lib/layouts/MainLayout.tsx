@@ -6,6 +6,12 @@ import OnBoarding from './onBoarding/OnBoarding';
 import OnBoardingFirst from '../screens/onboarding-first/OnboardingFirst';
 import OnBoardingSecond from '../screens/onboarding-second/OnboardingSecond';
 import SignUp from '../screens/signup/Signup';
+import ProfileSetup from '../screens/profile-setup/ProfileSetUp';
+import OTP from '../screens/otp/OTP';
+import NotFound from '../screens/not-found/NotFound';
+import TellUsInterest from '../screens/tellUsInterest/TellUsInterest';
+import Customize from '../screens/customize/Customize';
+import AppLayout from './App/App';
 
 const MainLayout = () => {
   return (
@@ -18,6 +24,13 @@ const MainLayout = () => {
               <Route path="/onboarding/first" element={<OnBoardingFirst />  } />
               <Route path="/onboarding/second" element={<OnBoardingSecond />} />
               <Route path="/onboarding/signup" element={<SignUp />} />
+              <Route path="/onboarding/otp" element={<OTP />}/>
+              <Route path="/onboarding/profile" element={<ProfileSetup />} />
+              <Route path="/onboarding/interest" element={<TellUsInterest />} />
+              <Route path="/onboarding/customize" element={<Customize />}/>
+            </Route>
+            <Route path="/not-found" element={<NotFound/>} />
+            <Route path="/app" element={<AppLayout />}>
             </Route>
         </Routes>
       </Router>

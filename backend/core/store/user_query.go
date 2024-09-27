@@ -1,7 +1,7 @@
 package store
 
 const (
-	getUserByIDQuery = `SELECT name
+	getUserByIDQuery = `SELECT user_id, name, phone_number
 						FROM "user" 
-						WHERE id = $1`
+						WHERE user_id = $1`
 )

@@ -1,0 +1,19 @@
+.selectWrapper {
+  border: 1px solid #FFA9A3;
+  background-color: #FFDDD1;
+  border-radius: 30px;
+  display: flex;
+  justify-content: end;
+  padding: 15px 33px;
+  select {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 80%;
+    font-weight: 500;
+    font-size: 14px;
+    &:focus {
+      outline: none
+    }
+  }
+}

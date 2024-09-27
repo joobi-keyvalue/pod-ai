@@ -27,6 +27,18 @@ type ErrorInfo struct {
 
 type ResponseCode string
 
+const (
+	SUCCESS              ResponseCode = "0000"
+	UNAUTHORIZED         ResponseCode = "0001"
+	BAD_REQUEST          ResponseCode = "0002"
+	ACCESS_DENIED        ResponseCode = "0003"
+	NOT_FOUND            ResponseCode = "0004"
+	INTERNAL_ERROR       ResponseCode = "0005"
+	UNPROCESSIBLE_ENTITY ResponseCode = "0006"
+	DUPLICATE_REQUEST    ResponseCode = "0007"
+	TOO_MANY_REQUEST     ResponseCode = "0008"
+)
+
 func RespondWithJSON(rw http.ResponseWriter, status int, response Response) {
 	respBytes, err := json.Marshal(response)
 	if err != nil {

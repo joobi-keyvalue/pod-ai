@@ -4,3 +4,5 @@ backend/ai/.env
 frontend/node_modules
 .venv/
 __pycache__/
+push.sh
+.idea

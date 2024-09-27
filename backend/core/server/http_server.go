@@ -7,7 +7,7 @@ import (
 )
 
 func startHTTPServer(dependencies Dependencies, server *http.Server) (err error) {
-	logger.Info(context.Background(), "starting API server on %s", server.Addr)
+	logger.Info(context.Background(), "starting API server on ", server.Addr)
 	err = server.ListenAndServe()
 	return
 }
