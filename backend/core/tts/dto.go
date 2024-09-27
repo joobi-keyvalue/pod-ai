@@ -27,6 +27,10 @@ var voiceIDMap = map[string]string{
 	"Host2": "amiAXapsDOAiHJqbsAZj",
 	"host1": "yl2ZDV1MzN4HbQJbMihG",
 	"host2": "amiAXapsDOAiHJqbsAZj",
+	"Alex":  "yl2ZDV1MzN4HbQJbMihG",
+	"Sam":   "amiAXapsDOAiHJqbsAZj",
+	"alex":  "yl2ZDV1MzN4HbQJbMihG",
+	"sam":   "amiAXapsDOAiHJqbsAZj",
 }
 
 const apiKey = "sk_311f0e463b6ddff18d81584ff9b8fa62b11cafa84df0b359"
