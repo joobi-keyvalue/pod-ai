@@ -1,0 +1,5 @@
+2024-09-27T01:22:28.736+0530	[34mINFO[0m	server/http_server.go:10	starting API server on %s:8181
+2024-09-27T01:22:33.977+0530	[34mINFO[0m	auth/service.go:29	ivde ethiAdmin0
+2024-09-27T01:22:38.575+0530	[34mINFO[0m	auth/service.go:29	ivde ethifdsfds0
+2024-09-27T01:22:51.824+0530	[34mINFO[0m	server/server.go:72	shutting down API server %s:8181
+2024-09-27T01:22:51.824+0530	[34mINFO[0m	server/server.go:64	http server stopped - %shttp: Server closed
