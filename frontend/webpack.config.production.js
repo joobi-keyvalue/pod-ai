@@ -1,18 +1,18 @@
-const path = require('path');
-const webpack = require('webpack');
-const TerserPlugin = require('terser-webpack-plugin');
-const getPackageJson = require('./scripts/getPackageJson');
+const path = require("path");
+const webpack = require("webpack");
+const TerserPlugin = require("terser-webpack-plugin");
+const getPackageJson = require("./scripts/getPackageJson");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-const {
-  version,
-  name,
-  license,
-  repository,
-  author,
-} = getPackageJson('version', 'name', 'license', 'repository', 'author');
+const { version, name, license, repository, author } = getPackageJson(
+  "version",
+  "name",
+  "license",
+  "repository",
+  "author"
+);
 
 const banner = `
   ${name} v${version}
@@ -26,37 +26,37 @@ const banner = `
 
 module.exports = {
   mode: "production",
-  devtool: 'source-map',
-  entry: './src/index.tsx',
+  devtool: "source-map",
+  entry: "./src/index.tsx",
   output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'build'),
+    filename: "index.js",
+    path: path.resolve(__dirname, "build"),
     library: "Multi Select Component",
-    libraryTarget: 'umd',
-    clean: true
+    libraryTarget: "umd",
+    clean: true,
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.css', '.scss'],
+    extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
     alias: {
-      app: path.resolve(__dirname, 'src/js')
-    }
+      app: path.resolve(__dirname, "src/js"),
+    },
   },
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
-    maxAssetSize: 512000
+    maxAssetSize: 512000,
   },
   optimization: {
     minimize: true,
     minimizer: [
       new TerserPlugin({ extractComments: false }),
-      new CssMinimizerPlugin()
+      new CssMinimizerPlugin(),
     ],
   },
   devServer: {
     port: 3030, // you can change the port,
     compress: true,
-    hot: true
+    hot: true,
   },
   module: {
     rules: [
@@ -64,56 +64,56 @@ module.exports = {
         test: /\.(m|j|t)s$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          }
-        }
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
       },
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader'
+        loader: "ts-loader",
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ["style-loader", "css-loader"],
       },
-      { 
+      {
         test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
-              modules: true
-            }
+              modules: true,
+            },
           },
-          'sass-loader'
-        ]
+          "sass-loader",
+        ],
       },
       {
         test: /\.svg$/,
-        use: 'url-loader'
+        use: "url-loader",
       },
       {
         test: /\.(png|jpg|jpeg|gif|ico)$/,
         exclude: /node_modules/,
-        use: ['file-loader?name=[name].[ext]'] // ?name=[name].[ext] is only necessary to preserve the original file name
-      }
-    ]
+        use: ["file-loader?name=[name].[ext]"], // ?name=[name].[ext] is only necessary to preserve the original file name
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-        filename: 'css/index.css'
+      filename: "css/index.css",
     }),
     new webpack.BannerPlugin(banner),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-      favicon: './assets/favicon.ico'
-    })
+      template: "./src/index.html",
+      filename: "./index.html",
+      favicon: "./assets/favicon.svg",
+    }),
   ],
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json']
-  }
+    extensions: [".ts", ".tsx", ".js", ".json"],
+  },
 };

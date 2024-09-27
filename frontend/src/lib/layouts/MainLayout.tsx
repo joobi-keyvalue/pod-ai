@@ -8,6 +8,7 @@ import OnBoardingSecond from '../screens/onboarding-second/OnboardingSecond';
 import SignUp from '../screens/signup/Signup';
 import ProfileSetup from '../screens/profile-setup/ProfileSetUp';
 import OTP from '../screens/otp/OTP';
+import NotFound from '../screens/not-found/NotFound';
 
 const MainLayout = () => {
   return (
@@ -23,6 +24,7 @@ const MainLayout = () => {
               <Route path="/onboarding/otp" element={<OTP />}/>
               <Route path="/onboarding/profile" element={<ProfileSetup />} />
             </Route>
+            <Route path="/not-found" element={<NotFound/>} />
         </Routes>
       </Router>
     </div>

@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/keycode/podai/auth"
 	"github.com/keycode/podai/podcast"
+	"github.com/keycode/podai/tts"
 )
 
 func initRouter(dependencies Dependencies) (router *mux.Router) {
@@ -19,11 +20,14 @@ func initRouter(dependencies Dependencies) (router *mux.Router) {
 	router.Handle("/podcast/{id}/like", podcast.HandleLikePodcast(dependencies.PodcastService)).Methods(
 		http.MethodPost,
 	)
-	
 
 	router.Handle("/podcast/{id}", podcast.HandleGetPodcastByID(dependencies.PodcastService)).Methods(
 		http.MethodGet,
 	)
-	
+
+	router.Handle("/generate-tts", tts.HandleStartTTS(dependencies.TTSService)).Methods(
+		http.MethodPost,
+	)
+
 	return
 }
