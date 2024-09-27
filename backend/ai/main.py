@@ -1,7 +1,22 @@
 from fastapi import FastAPI, HTTPException
 from models import Item
 from dotenv import load_dotenv
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.cron import CronTrigger
+from service import create_topic_summary, create_reddit_user_summary, create_podcast_for_users
+
 load_dotenv()
+
+scheduler = BackgroundScheduler()
+
+def schedule_podcast_creation():
+    create_topic_summary()
+    create_reddit_user_summary()
+    create_podcast_for_users()
+
+scheduler.add_job(schedule_podcast_creation, CronTrigger(hour=21, minute=28))
+    
+scheduler.start()
 
 app = FastAPI()
 
