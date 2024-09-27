@@ -1,0 +1,39 @@
+.slider {
+  position: relative;
+  input[type="range"] {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 271px;
+  }
+  .displaySection {
+    width: 271px;
+  }
+  .thumb {
+    position: absolute;
+    top: -8px;
+    left: -10px;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    border: 0.5px solid #FFFFF0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+  .innerThumb {
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    border: 1px solid #FFA9A3;
+    text-align: center;
+    color: #FFA9A3;
+    background-color: #FFFFF0;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
