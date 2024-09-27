@@ -1,0 +1,23 @@
+.container {
+  .rhap_container {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    gap: 0;
+    padding: 0;
+  }
+  
+  .rhap_main-controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .rhap_main-controls-button {
+    color: #FFFFF0;
+  }
+  
+  .rhap_progress-section {
+    display: none;
+  }
+  
+}

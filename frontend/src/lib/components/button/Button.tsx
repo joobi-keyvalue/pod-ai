@@ -5,14 +5,12 @@ const Button: FC<{
   text: string;
   disabled?: boolean;
   onClick?: () => void;
-  margin?: string;
   icon?: string;
-}> = ({ text, disabled, onClick, margin, icon }) => {
+}> = ({ text, disabled, onClick, icon }) => {
   return (
     <button
       className={styles.button}
       disabled={disabled}
-      style={{ margin }}
       onClick={onClick}
     >
       <span>{text}</span>

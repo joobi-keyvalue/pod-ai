@@ -14,6 +14,11 @@ import Customize from '../screens/customize/Customize';
 import AppLayout from './App/App';
 import OnBoardingFinal from '../screens/onboarding-final/OnboardingFinal';
 import LandingPage from '../screens/landing/Landing';
+import Topics from '../screens/topics/Topics';
+import Preferences from '../screens/preferences/Preferences';
+import Profile from '../screens/profile/Profile';
+
+import Podcast from "../screens/podcast/Podcast";
 
 const MainLayout = () => {
   return (
@@ -35,13 +40,17 @@ const MainLayout = () => {
             </Route>
             <Route path="/app" element={<AppLayout />}>
               <Route index element={<LandingPage />} />
+              <Route path="/app/topics" element={<Topics />}/>
+              <Route path="/app/preferences" element={<Preferences />} />
+              <Route path="/app/profile" element={<Profile />} />
+              <Route path="/app/player/:id" element={<Podcast />} />
               <Route path="/app/not-found" element={<NotFound/>} />
 
             </Route>
         </Routes>
       </Router>
     </div>
-  )
+  );
 };
 
 export default MainLayout;

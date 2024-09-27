@@ -24,5 +24,6 @@
   .bottomButton {
     position:absolute;
     bottom: 72px;
+    width: calc(100% - 41px);
     transition: all 0.3s;
   }
