@@ -1,5 +1,10 @@
 backend/ai/venv/
 backend/ai/__pycache__/
 backend/ai/.env
+<<<<<<< Updated upstream
 frontend/node_modules
 .venv/
+=======
+
+push.sh
+>>>>>>> Stashed changes
