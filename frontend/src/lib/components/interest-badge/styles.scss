@@ -4,13 +4,16 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 50px;
+  height: 38px;
   border: #ffa9a3;
   background-color: #ffddd1;
   border-width: 1px;
   border-radius: 30px;
   border-style: solid;
   padding: 5px;
+  &.selected {
+    background-color: #FFA9A3;
+  }
   .iconContainer {
     width: 40px;
     display: flex;
@@ -34,6 +37,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-transform: capitalize;
     p {
       font-size: 14px;
       font-weight: 600;
