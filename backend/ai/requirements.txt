@@ -1,3 +1,7 @@
 fastapi
 uvicorn
 pydantic
+tavily-python
+newsapi-python
+openai
+python-dotenv
