@@ -19,7 +19,7 @@ const AppLayout = () => {
         />
         <img className={styles.logo} src="assets/app-logo.svg" />
       </div>
-      {isSidebarOpen && <Sidebar toggleSidebar={toggleSidebar} />}
+      <Sidebar toggleSidebar={toggleSidebar} open={isSidebarOpen} />
       <Outlet />
       {/* <SmallPlayer title="Bears, MMA & Global Warming." /> */}
     </div>

@@ -14,11 +14,12 @@ const menuItems = [
 
 interface SidebarProps {
   toggleSidebar: () => void;
+  open: boolean
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar }) => {
+const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, open }) => {
   return (
-    <div className={styles.sidebar}>
+    <div className={`${styles.sidebar} ${open && styles.open}`}>
       <div className={styles.header}>
         <img
           className={styles["close-button"]}
