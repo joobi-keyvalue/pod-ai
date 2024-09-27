@@ -1,0 +1,58 @@
+.container {
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 48px);
+  position: relative;
+  .back {
+    width: 100%;
+  }
+  .title {
+    font-size: 24px;
+    font-weight: 500;
+    padding-top: 25px;
+  }
+  .divider {
+    border-bottom: 1px solid #FFA9A3;
+    width: 100%;
+    margin-left: 71px;
+    margin-top: 18px;
+  }
+  .textContainer {
+    margin: 54px 17px 0;
+  }
+  .or {
+    margin-top: 26px;
+    text-align: center;
+    width: 100%;
+    color: #888888;
+  }
+  .iconGroups {
+    margin-top: 18px;
+    display: flex;
+    gap: 30px;
+    height: 47px;
+    img {
+      width: 47px;
+      height: 47px;
+    }
+  }
+  .terms {
+    padding: 26px 70px 20px;
+    font-size: 12px;
+    text-align: center;
+    color: #888888;
+    .underliner {
+      text-decoration: underline;
+    }
+  }
+  .bottomButton {
+    position:absolute;
+    bottom: 72px;
+    transition: all 0.3s;
+    &.open {
+      bottom: 300px;
+    }
+  }
+}

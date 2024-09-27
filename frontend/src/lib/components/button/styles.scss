@@ -1,0 +1,20 @@
+.button {
+  color: #FFFFF0  ;
+  background-color: #FFA9A3;
+  height: 64px;
+  font-size: 16px;
+  font-weight: 600;
+  min-width: 343px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    background-color: #FFDDD1;
+    color: #888888;
+  }
+}

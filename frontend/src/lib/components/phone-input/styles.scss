@@ -1,0 +1,32 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 7px;
+  width: 375px;
+  background-color: #474747;
+  padding: 10px;
+  .item {
+    height: 100%;
+    background-color: #646464;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2px;
+    height: 46px;
+    border-radius: 5px;
+    font-size: 25px;
+  }
+  .deleteIcon {
+    width: 32px;
+    height: 32px;
+  }
+  .second {
+    font-size: 10px;
+    height: 11px;
+  }
+  .special {
+    background-color: transparent;
+  }
+}

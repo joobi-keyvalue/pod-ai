@@ -1,0 +1,25 @@
+.container {
+  position: absolute;
+  bottom: 0;
+  height: 0;
+  background-color: #474747;
+  transition: all 0.3s;
+  &.open {
+    height: 291px;
+  }
+  .wrapper {
+    position: relative;
+    height: 100%;
+    .bottomLine {
+      position: absolute;
+      bottom: 8px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      img {
+        height: 5px;
+        width: 135px;
+      }
+    }
+  }
+}

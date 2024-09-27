@@ -1,0 +1,26 @@
+.container {
+  border: 1px solid #FFA9A3;
+  background-color: #FFDDD1;
+  border-radius: 25px;
+  padding: 21px 51px;
+  display: flex;
+  justify-content: space-between;
+  .textContent {
+    border: none;
+    outline: none;
+    background-color: #FFDDD1;
+    color: #88888870;
+    font-size: 14px;
+    font-weight: 600;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: #88888890;
+    }
+  }
+  .iconWrapper {
+    width: 17.05px;
+    height: 17.05px;
+  }
+}

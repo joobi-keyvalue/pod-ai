@@ -1,0 +1,32 @@
+.container {
+  padding: 93px 47px 53px;
+  padding-top: 40px;
+  display: flex;
+  gap: 38px;
+  flex-direction: column;
+  align-items: center;
+  .first {
+    width: 279px;
+    height: 301px;
+    margin-bottom: 26px;
+  }
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+    width: calc(100% + 20px);
+    margin-bottom: 17px;
+
+    .title {
+      font-weight: 600;
+      font-size: 28px;
+      color: #0F0F0F;
+    }
+    .subTitle {
+      color: #888888;
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }
+}

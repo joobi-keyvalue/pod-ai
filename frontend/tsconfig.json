@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "noImplicitAny": true,
+    "outDir": "build",
+    "module": "esnext",
+    "target": "es5",
+    "allowJs": true,
+    "sourceMap": true,
+    "noEmit": false,
+    "baseUrl": "src",
+    "declaration": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ES2016", "dom"],
+    "moduleResolution": "node",
+    "strictNullChecks": true,
+    "esModuleInterop": true
+  },
+  "files": [
+    "global.d.ts"
+  ],
+  "include": ["src"],
+  "exclude": ["src/**/tests"],
+}
