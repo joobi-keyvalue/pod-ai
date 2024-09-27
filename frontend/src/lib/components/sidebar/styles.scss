@@ -11,9 +11,11 @@
   flex-direction: column;
   justify-content: center;
   z-index: 1000;
+  pointer-events: none;
   &.open {
     width: 80vw;
     opacity: 1;
+    pointer-events: all;
   }
   .header {
     padding: 25px 35px 0;

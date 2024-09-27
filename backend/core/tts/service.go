@@ -40,6 +40,11 @@ func (s service) GenerateAndStore() {
 	if err != nil {
 		logger.Error(context.Background(), "error while getting scripts", err.Error())
 	}
+
+	if len(scripts) == 0 {
+		logger.Info(context.Background(), "no scripts found")
+		return
+	}
 	for _, sc := range scripts {
 		logger.Info(context.Background(), sc)
 		re := regexp.MustCompile(`"([^"]+)":\s*"((?:[^"\\]|\\.)*?)"`)

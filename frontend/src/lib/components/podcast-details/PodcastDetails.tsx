@@ -10,7 +10,6 @@ const PodcastDetails: FC<{
   liked: boolean;
 }> = ({ image, title, topics, handleLike, liked }) => {
   const handleClick = () => {
-    console.log("clicked");
     handleLike(!liked);
   };
   return (

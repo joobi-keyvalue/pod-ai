@@ -118,3 +118,41 @@ func HandleGetPodcasts(service Service) http.HandlerFunc {
 		})
 	})
 }
+
+func HandleGetSourcesByPodcastID(service Service) http.HandlerFunc {
+	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+		ctx := req.Context()
+		vars := mux.Vars(req)
+		id := vars["id"]
+		podcastID, err := strconv.ParseInt(id, 10, 64)
+		if err != nil {
+			logger.Error(ctx, "invalid podcast ID", err.Error(), "podcast_id", id)
+			api.RespondWithError(res, http.StatusBadRequest, api.Response{
+				Error:        "invalid podcast ID",
+				ResponseCode: api.BAD_REQUEST,
+			})
+			return
+		}
+
+		sources, err := service.GetSourcesByPodcastID(ctx, podcastID)
+		if err != nil {
+			logger.Error(ctx, "error fetching sources by podcast ID", err.Error(), "podcast_id", id)
+			if err == constants.ErrSourcesNotFound {
+				api.RespondWithError(res, http.StatusNotFound, api.Response{
+					Error:        "sources not found",
+					ResponseCode: api.NOT_FOUND,
+				})
+				return
+			}
+			api.RespondWithError(res, http.StatusInternalServerError, api.Response{
+				Error:        "error fetching sources by podcast ID",
+				ResponseCode: api.INTERNAL_ERROR,
+			})
+			return
+		}
+
+		api.RespondWithJSON(res, http.StatusOK, api.Response{
+			Data: sources,
+		})
+	})
+}

@@ -9,6 +9,7 @@ import (
 type PodcastStorer interface {
 	LikePodcast(ctx context.Context, podcastID int64) (err error)
 	GetPodcastByID(ctx context.Context, podcastID int64) (podcast Podcast, err error)
+	GetSourcesByPodcastID(ctx context.Context, podcastID int64) (sources []string, err error)
 	GetPodcasts(ctx context.Context, userID string, limit, offset int, isLiked bool) (podcasts []Podcast, err error)
 }
 

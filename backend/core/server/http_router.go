@@ -47,6 +47,10 @@ func initRouter(dependencies Dependencies) (router *mux.Router) {
 		http.MethodGet,
 	)
 
+	router.Handle("/podcast/{id}/sources", podcast.HandleGetSourcesByPodcastID(dependencies.PodcastService)).Methods(
+		http.MethodGet,
+	)
+
 	router.Handle("/user/{user_id}/podcasts", podcast.HandleGetPodcasts(dependencies.PodcastService)).Methods(
 		http.MethodGet,
 	)
