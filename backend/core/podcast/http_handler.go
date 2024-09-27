@@ -76,7 +76,8 @@ func HandleGetPodcastByID(service Service) http.HandlerFunc {
 func HandleGetPodcasts(service Service) http.HandlerFunc {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		ctx := req.Context()
-
+		vars := mux.Vars(req)
+		userID := vars["user_id"]
 		// Parse query parameters
 		limit, err := strconv.Atoi(req.URL.Query().Get("limit"))
 		if err != nil || limit <= 0 {
@@ -94,7 +95,7 @@ func HandleGetPodcasts(service Service) http.HandlerFunc {
 		}
 
 		// Call the service to fetch podcasts
-		podcasts, err := service.GetPodcasts(ctx, limit, offset, isLiked)
+		podcasts, err := service.GetPodcasts(ctx, userID, limit, offset, isLiked)
 		if err != nil {
 			logger.Error(ctx, "error fetching podcasts", err.Error())
 			if err == constants.ErrPodcastNotFound {
