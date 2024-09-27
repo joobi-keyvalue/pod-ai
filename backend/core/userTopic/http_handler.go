@@ -14,7 +14,7 @@ func HandleAddUserTopic(service Service) http.HandlerFunc {
 		err := json.NewDecoder(req.Body).Decode(&request)
 		if err != nil {
 			logger.Error(req.Context(), "error reading request", "error", err.Error(), "request body", req.Body)
-			api.RespondWithError(res, http.StatusInternalServerError, api.Response{
+			api.RespondWithError(res, http.StatusBadRequest, api.Response{
 				Error: "error adding user topics",
 			})
 			return

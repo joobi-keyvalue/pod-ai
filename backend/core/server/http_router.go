@@ -31,6 +31,10 @@ func initRouter(dependencies Dependencies) (router *mux.Router) {
 		http.MethodGet,
 	)
 
+	router.Handle("/topics", topic.HandleCreateTopic(dependencies.TopicService)).Methods(
+		http.MethodPost,
+	)
+
 	router.Handle("/users/{user_id}/topics", userTopic.HandleAddUserTopic(dependencies.UserTopicService)).Methods(
 		http.MethodPost,
 	)

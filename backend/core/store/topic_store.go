@@ -15,5 +15,22 @@ func (s *topicStore) GetAll(ctx context.Context) (topics []Topic, err error) {
 	}
 
 	return
+}
 
+func (s *topicStore) GetTopicByName(ctx context.Context, name string) (topic Topic, err error) {
+	err = s.db.GetContext(ctx, &topic, getTopicByName, name)
+	if err != nil {
+		return
+	}
+
+	return
+}
+
+func (s *topicStore) CreateTopic(ctx context.Context, topicName string) (topic Topic, err error) {
+	err = s.db.GetContext(ctx, &topic, createTopic, topicName)
+	if err != nil {
+		return
+	}
+
+	return
 }

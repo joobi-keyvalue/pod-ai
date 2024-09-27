@@ -1,5 +1,9 @@
 package store
 
 const (
-	getAllTopic = `select id, name from topic;`
+	getAllTopic = `SELECT id, name FROM topic;`
+
+	getTopicByName = `SELECT id, name FROM topic WHERE name=$1;`
+
+	createTopic = `INSERT INTO topic (name) VALUES ($1) RETURNING id, "name";`
 )
