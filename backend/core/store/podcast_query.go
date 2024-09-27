@@ -16,15 +16,17 @@ const (
 	getPodcastsQuery = `
 		SELECT podcast_id, title, script, transcript, date, user_id, is_liked, audio_link
 		FROM podcast
+		WHERE user_id = $1
 		ORDER BY date DESC
-		LIMIT $1 OFFSET $2
+		LIMIT $2 OFFSET $3
 	`
 
 	getLikedPodcastsQuery = `
 		SELECT podcast_id, title, script, transcript, date, user_id, is_liked, audio_link
 		FROM podcast
 		WHERE is_liked = true
+		AND user_id = $1
 		ORDER BY date DESC
-		LIMIT $1 OFFSET $2
+		LIMIT $2 OFFSET $3
 	`
 )
