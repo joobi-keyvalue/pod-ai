@@ -15,7 +15,7 @@ def create_podcast_for_new_user(user_id):
     create_topic_summary()
     create_reddit_user_summary(user_id)
     create_podcast_for_users(user_id)
-    requests.post("https://194d-103-138-236-18.ngrok-free.app/generate-tts")
+    requests.post("http://localhost:8181/generate-tts")
 
 
 def create_topic_summary():
@@ -65,7 +65,7 @@ def create_topic_summary():
         connection.commit()
 
     except Exception as e:
-        print(f"Error occurred: {e}")
+        print(f"Error occurred while summary generation: {e}")
         connection.rollback()  # Rollback in case of error
 
     finally:
@@ -78,6 +78,7 @@ def create_topic_summary():
 def create_reddit_user_summary(userid = None):
     connection = get_connection()
     cursor = connection.cursor()
+    users_with_reddit = []
 
     try:
 
@@ -90,17 +91,17 @@ def create_reddit_user_summary(userid = None):
             user_exists = cursor.fetchone()
             if(user_exists):
                 users_with_reddit = [user_exists]
-            else:
+        else:
         # SQL query to fetch user IDs with 'reddit' topic
-                query = """
-                SELECT ut.user_id, t.id AS topic_id
-                FROM public.user_topic ut
-                JOIN public.topic t ON ut.topic_id = t.id
-                WHERE LOWER(t.name) = 'reddit';
-                """
+            query = """
+            SELECT ut.user_id, t.id AS topic_id
+            FROM public.user_topic ut
+            JOIN public.topic t ON ut.topic_id = t.id
+            WHERE LOWER(t.name) = 'reddit';
+            """
                 
-                cursor.execute(query)
-                users_with_reddit = cursor.fetchall()
+            cursor.execute(query)
+            users_with_reddit = cursor.fetchall()
 
         # Check if any users are found
         if users_with_reddit:
@@ -127,7 +128,7 @@ def create_reddit_user_summary(userid = None):
                     INSERT INTO public.personalized_summary 
                     (id, summary, "date", topic_id, user_id)
                     VALUES (nextval('personalized_summary_id_seq'::regclass), %s, NOW(), %s, %s)
-                    RETURNING summary_id;;
+                    RETURNING summary_id;
                     """
                     cursor.execute(insert_query, (summary, topic_id, user_id))
                     summary_id = cursor.fetchone()[0]  # Get the inserted summary_id
@@ -147,7 +148,7 @@ def create_reddit_user_summary(userid = None):
             print("No users found with the 'reddit' topic.")
 
     except Exception as e:
-        print(f"Error occurred: {e}")
+        print(f"Error occurred while reddit summary generation: {e}")
         connection.rollback()  # Rollback transaction if there is an error
 
     finally:
@@ -197,6 +198,7 @@ def create_podcast_for_users(user_id=None):
                     topic_ids = cursor.fetchall()
 
                     combined_summaries = []
+                    summary_ids = []
 
                     # Fetch summaries from personalized_summary for the current date
                     if topic_ids:
@@ -217,15 +219,17 @@ def create_podcast_for_users(user_id=None):
 
                             # Fetch from summary table
                             summary_query = """
-                            SELECT summary
+                            SELECT summary, summary_id
                             FROM public.summary
                             WHERE topic_id = %s AND "date" = CURRENT_DATE;
                             """
-                            cursor.execute(summary_query, (topic_id,))
-                            summary_result = cursor.fetchone()
+                            if not topic_id == 5:
+                                cursor.execute(summary_query, (topic_id,))
+                                summary_result = cursor.fetchone()
+                                summary_ids.append(summary_result[1])
 
-                            if summary_result:
-                                combined_summaries.append(summary_result[0])
+                                if summary_result:
+                                    combined_summaries.append(summary_result[0])
 
                     # Combine all summaries for the user
                     if combined_summaries:
@@ -236,9 +240,21 @@ def create_podcast_for_users(user_id=None):
                         insert_query = """
                         INSERT INTO public.podcast
                         (   podcast_id, title, script, transcript, "date", user_id, is_liked, audio_link)
-                        VALUES (nextval('podcast_podcast_id_seq'::regclass), '', %s, %s, CURRENT_DATE, %s, false, '');
+                        VALUES (nextval('podcast_podcast_id_seq'::regclass), '', %s, %s, CURRENT_DATE, %s, false, '')
+                        RETURNING podcast_id;
                         """
                         cursor.execute(insert_query, (ssml, transcript, user_id))
+                        podcast_id = cursor.fetchone()[0]
+
+                        for summary_id in summary_ids:
+                            insert_podcast_summary_query = """
+                            INSERT INTO public.summary_podcast
+                            (podcast_id, summary_id)
+                            VALUES (%s, %s);
+                            """
+                            cursor.execute(insert_podcast_summary_query, (podcast_id, summary_id))
+
+
                         connection.commit()  # Commit the changes to the database
                     else:
                         print(f"No summaries found for User {user_id} for the current date.")
@@ -247,7 +263,7 @@ def create_podcast_for_users(user_id=None):
             print("No users found.")
 
     except Exception as e:
-        print(f"Error occurred: {e}")
+        print(f"Error occurred while podcast generation: {e}")
         connection.rollback()  # Rollback transaction if there is an error
 
     finally:
