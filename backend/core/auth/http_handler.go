@@ -85,7 +85,7 @@ func HandleCreateUser(service Service) http.HandlerFunc {
 			return
 		}
 
-		_, err = service.CreateUser(req.Context(), user.PhoneNumber, user.Name)
+		userResponse, err := service.CreateUser(req.Context(), user.PhoneNumber, user.Name)
 		if err != nil {
 			logger.Error(req.Context(), "error creating user", err.Error())
 			api.RespondWithError(res, http.StatusInternalServerError, api.Response{
@@ -95,7 +95,7 @@ func HandleCreateUser(service Service) http.HandlerFunc {
 		}
 
 		api.RespondWithJSON(res, http.StatusOK, api.Response{
-			Data: "success",
+			Data: userResponse,
 		})
 	})
 }
