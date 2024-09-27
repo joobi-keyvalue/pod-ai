@@ -19,6 +19,14 @@ func initRouter(dependencies Dependencies) (router *mux.Router) {
 		http.MethodGet,
 	)
 
+	router.Handle("/login", auth.HandleLogin(dependencies.AuthService)).Methods(
+		http.MethodPost,
+	)
+
+	router.Handle("/create-user", auth.HandleCreateUser(dependencies.AuthService)).Methods(
+		http.MethodPost,
+	)
+
 	router.Handle("/topics", topic.HandleGetAllTopics(dependencies.TopicService)).Methods(
 		http.MethodGet,
 	)
