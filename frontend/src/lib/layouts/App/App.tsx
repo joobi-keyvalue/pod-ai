@@ -27,7 +27,7 @@ const AppLayout = () => {
         />
         <img className={styles.logo} src="assets/app-logo.svg"  onClick={() => {
           navigate('/app');
-          toggleSidebar();
+          setIsSidebarOpen(false);
         }}/>
       </div>
       <Sidebar toggleSidebar={toggleSidebar} open={isSidebarOpen} />
