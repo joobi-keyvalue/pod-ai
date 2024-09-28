@@ -15,5 +15,8 @@
     &:focus {
       outline: none
     }
+    &:disabled {
+      color: #00000095;
+    }
   }
 }

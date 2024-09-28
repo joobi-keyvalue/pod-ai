@@ -29,7 +29,7 @@ const Slider:FC<SliderPropType> = ({ step = 1, min, max, list, steps = [] }) => 
       </datalist>
       <img className={styles.displaySection} src="assets/slider.svg" />
       <div style={{ left }}className={styles.thumb}>
-        <div className={styles.innerThumb}>{Number(value) - 1}</div>
+        <div className={styles.innerThumb}>{Number(value) === 1 ? Number(value) : Number(value) - 1}</div>
       </div>
     </div>
   )

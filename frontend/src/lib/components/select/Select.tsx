@@ -7,7 +7,7 @@ interface SelectPropType {
 const Select:FC<SelectPropType> = ({ options }) => {
   return (
     <div className={styles.selectWrapper}>
-      <select>
+      <select disabled>
         {options?.map((option) => (
           <option value={option.value}>{option.label}</option>
         ))}

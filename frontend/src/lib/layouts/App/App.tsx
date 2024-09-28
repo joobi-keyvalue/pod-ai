@@ -25,7 +25,10 @@ const AppLayout = () => {
           src="assets/hamburger.svg"
           onClick={toggleSidebar}
         />
-        <img className={styles.logo} src="assets/app-logo.svg"  onClick={() => navigate('/app')}/>
+        <img className={styles.logo} src="assets/app-logo.svg"  onClick={() => {
+          navigate('/app');
+          toggleSidebar();
+        }}/>
       </div>
       <Sidebar toggleSidebar={toggleSidebar} open={isSidebarOpen} />
       <Outlet />
