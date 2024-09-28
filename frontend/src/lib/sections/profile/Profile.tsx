@@ -6,6 +6,7 @@ import Button from "../../components/button/Button";
 import BottomCallout from "../../components/bottom-callout/BottomCallout";
 import PhoneInput from "../../components/phone-input/PhoneInput";
 import { useCreateUserMutation } from "../../../api/onBoardingAPI";
+import { REDDIT } from './constants';
 
 const ProfileSetupSection: FC<{ buttonText?: string; goTo?: string }> = ({
   buttonText = "Continue",
@@ -13,6 +14,8 @@ const ProfileSetupSection: FC<{ buttonText?: string; goTo?: string }> = ({
 }) => {
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
+  const [reddit, setReddit] = useState(false);
+  const [twitter, setTwitter] = useState(false);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const [createUser, { isSuccess, data }] = useCreateUserMutation();
@@ -62,8 +65,11 @@ const ProfileSetupSection: FC<{ buttonText?: string; goTo?: string }> = ({
       <div className={styles.accounts}>
         <div className={styles.accountsTitle}>Connect Your Accounts:</div>
         <div className={styles.accountSection}>
-          <img src="assets/twitter.svg" />
-          <img src="assets/reddit.svg" />
+          <img src={`assets/twitter${twitter && '-filled' || ''}.svg`} onClick={() => setTwitter(true)} />
+          <img src={`assets/reddit${reddit && '-filled' || ''}.svg`} onClick={() => {
+            setReddit(true);
+            window.open(REDDIT, '_blank');
+          }} />
           <img src="assets/linkedin.svg" />
         </div>
       </div>

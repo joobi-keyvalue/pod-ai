@@ -9,6 +9,7 @@ import BottomCallout from '../../components/bottom-callout/BottomCallout';
 import PhoneInput from '../../components/phone-input/PhoneInput';
 import { useAddTopicMutation, useGetTopicsQuery } from '../../../api/onBoardingAPI';
 import { useCreateTopicsMutation, useGetUserTopicsQuery } from '../../../api/appAPI';
+import Loader from '../../components/loader/Loader';
 
 const TellUsInterestSection: FC<{ buttonText?: string, goTo?: string}>  = ( { buttonText= 'Continue', goTo = '/onboarding/customize'}) => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const TellUsInterestSection: FC<{ buttonText?: string, goTo?: string}>  = ( { bu
 
   const { data } = useGetTopicsQuery('');
   const { data: topics } = useGetUserTopicsQuery({ id })
-  const [createTopic, { isSuccess: createTopicSuccess}] = useCreateTopicsMutation();
+  const [createTopic, { isSuccess: createTopicSuccess, isLoading: createTopicLoading}] = useCreateTopicsMutation();
   const [addTopic, { isSuccess }] = useAddTopicMutation();
 
   useEffect(() => {
@@ -93,6 +94,7 @@ magic guide your mornings...'
       <BottomCallout open={open}>
         <PhoneInput />
       </BottomCallout>
+      {createTopicLoading && <Loader />}
     </>
   );
 };

@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const name = localStorage.getItem("userName");
+  const [reddit, setReddit] = useState(false);
+  const [twitter, setTwitter] = useState(false);
   const navigate = useNavigate();
   return (
     <div className={styles.container}>
@@ -27,8 +29,8 @@ const Profile = () => {
       </div>
       <div className={styles.accounts}>
         <div className={styles.accountSection}>
-          <img src="assets/twitter.svg" />
-          <img src="assets/reddit.svg" />
+          <img src={`assets/twitter${twitter && '-filled' || ''}.svg`} onClick={() => setTwitter(true)} />
+          <img src={`assets/reddit${reddit && '-filled' || ''}.svg`} onClick={() => setReddit(true)} />
           <img src="assets/linkedin.svg" />
         </div>
       </div>
