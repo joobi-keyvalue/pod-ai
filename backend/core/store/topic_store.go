@@ -1,6 +1,10 @@
 package store
 
-import "context"
+import (
+	"context"
+	"fmt"
+	"github.com/lib/pq"
+)
 
 type Topic struct {
 	ID   int64  `db:"id" json:"id"`
@@ -32,5 +36,14 @@ func (s *topicStore) CreateTopic(ctx context.Context, topicName string) (topic T
 		return
 	}
 
+	return
+}
+
+func (s *topicStore) GetTopicIDByNames(ctx context.Context, topicNames []string) (topics []string, err error) {
+	fmt.Println("Query: ", getTopicsByIDs)
+	fmt.Println("Values: ", pq.Array(topicNames))
+	err = s.db.SelectContext(ctx, &topics, getTopicsByIDs, pq.Array(topicNames))
+	if err != nil {
+	}
 	return
 }

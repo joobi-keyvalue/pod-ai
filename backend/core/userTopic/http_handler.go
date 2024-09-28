@@ -10,7 +10,7 @@ import (
 
 func HandleAddUserTopic(service Service) http.HandlerFunc {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
-		var request addUserTopicRequest
+		var request AddUserTopicRequest
 		err := json.NewDecoder(req.Body).Decode(&request)
 		if err != nil {
 			logger.Error(req.Context(), "error reading request", "error", err.Error(), "request body", req.Body)
@@ -65,7 +65,7 @@ func HandleGetUserTopics(service Service) http.HandlerFunc {
 	})
 }
 
-func (r addUserTopicRequest) Validate() (errors []api.ErrorInfo) {
+func (r AddUserTopicRequest) Validate() (errors []api.ErrorInfo) {
 	if len(r.TopicIDs) == 0 {
 		errors = append(errors, api.ErrorInfo{
 			Field:   "topic_ids",
