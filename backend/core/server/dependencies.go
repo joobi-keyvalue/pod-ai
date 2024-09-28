@@ -5,16 +5,16 @@ import (
 	"github.com/keycode/podai/db"
 	"github.com/keycode/podai/podcast"
 	"github.com/keycode/podai/store"
-	"github.com/keycode/podai/tts"
 	"github.com/keycode/podai/topic"
+	"github.com/keycode/podai/tts"
 	"github.com/keycode/podai/userTopic"
 )
 
 type Dependencies struct {
-	UserStore           store.UserStorer
-	AuthService         auth.Service
-	PodcastService podcast.Service
-	TTSService     tts.Service
+	UserStore        store.UserStorer
+	AuthService      auth.Service
+	PodcastService   podcast.Service
+	TTSService       tts.Service
 	TopicStore       store.TopicStorer
 	TopicService     topic.Service
 	UserTopicStore   store.UserTopicStorer
@@ -32,13 +32,13 @@ func NewDependencies() (dependencies Dependencies, err error) {
 	authService := auth.NewService(userStore)
 	podcastService := podcast.NewService(podcastStore)
 	ttsService := tts.NewService(appDB)
-	topicService := topic.NewService(topicStore)
+	topicService := topic.NewService(topicStore, userTopicService)
 
 	dependencies = Dependencies{
-		UserStore:           userStore,
-		AuthService:         authService,
-		TTSService:     ttsService,
-		PodcastService: podcastService,
+		UserStore:        userStore,
+		AuthService:      authService,
+		TTSService:       ttsService,
+		PodcastService:   podcastService,
 		TopicStore:       topicStore,
 		TopicService:     topicService,
 		UserTopicStore:   userTopicStore,

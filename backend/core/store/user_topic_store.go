@@ -26,7 +26,8 @@ func (u *userTopicStore) AddUserTopic(ctx context.Context, userID string, topicI
 	))
 	query = fmt.Sprintf("%s %s", query, returningClause)
 	query = u.db.Rebind(query)
-
+	fmt.Println("Query: ", query)
+	fmt.Println("Query values: ", queryValues)
 	err = u.db.SelectContext(ctx, &userTopic, query, queryValues...)
 	if err != nil {
 		return

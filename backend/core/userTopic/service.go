@@ -10,7 +10,7 @@ import (
 )
 
 type Service interface {
-	AddUserTopic(ctx context.Context, request addUserTopicRequest) (user []store.UserTopic, err error)
+	AddUserTopic(ctx context.Context, request AddUserTopicRequest) (user []store.UserTopic, err error)
 	GetTopicByUserID(ctx context.Context, userID string) (topic []store.Topic, err error)
 }
 
@@ -24,7 +24,7 @@ func NewService(userTopicStore store.UserTopicStorer) Service {
 	}
 }
 
-func (s *service) AddUserTopic(ctx context.Context, request addUserTopicRequest) (userTopics []store.UserTopic, err error) {
+func (s *service) AddUserTopic(ctx context.Context, request AddUserTopicRequest) (userTopics []store.UserTopic, err error) {
 	userTopics, err = s.userTopicStore.AddUserTopic(ctx, request.UserID, request.TopicIDs)
 	if err != nil {
 		logger.Error(ctx, "error adding user topics: ", err.Error())
@@ -71,4 +71,5 @@ func triggerPodcastCreation(ctx context.Context, userID string) {
 		logger.Info(ctx, "POST request failed with status code: ", resp.StatusCode)
 	}
 	logger.Info(ctx, "podcast creation finished")
+	return
 }
