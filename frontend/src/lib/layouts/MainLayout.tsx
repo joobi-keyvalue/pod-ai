@@ -26,6 +26,7 @@ const MainLayout = () => {
     <div>
       <Router>
         <Routes>
+            <Route path="/" element={<Navigate to="/splash" />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/splash" element={<Splash />} />
             <Route path="/onboarding" element={<OnBoarding />}>
@@ -47,10 +48,9 @@ const MainLayout = () => {
               <Route path="/app/player/:id" element={<Podcast />} />
               <Route path="/app/not-found" element={<NotFound/>} />
               <Route path="/app/liked-podcasts" element={<LikedPodcasts/>} />
-
             </Route>
+              <Route path="*" element={<Navigate to="/app/not-found"/>} />
             <Route path="/logout" element={<Navigate to="/splash" />} /> 
-            <Route path="*" element={<Navigate to="/app/not-found"/>} />
         </Routes>
       </Router>
     </div>
