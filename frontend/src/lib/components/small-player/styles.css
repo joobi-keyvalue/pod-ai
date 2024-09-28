@@ -1,4 +1,6 @@
 .container {
+  display: flex;
+  justify-content: end;
   .rhap_container {
     background-color: transparent;
     border: none;

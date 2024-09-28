@@ -48,6 +48,7 @@ const SmallPlayer: FC<{ audio?: string; title: string, muted: boolean }> = ({
         <div className={styles.close} onClick={() => dispatch(removePodcast())}>X</div>
       </div>
       </div>
+      <div className={styles.play}><img src="assets/playButton.svg" /></div>
     </div>
     </div>
   );

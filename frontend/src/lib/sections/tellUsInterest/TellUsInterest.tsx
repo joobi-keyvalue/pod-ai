@@ -8,7 +8,7 @@ import Button from '../../components/button/Button';
 import BottomCallout from '../../components/bottom-callout/BottomCallout';
 import PhoneInput from '../../components/phone-input/PhoneInput';
 import { useAddTopicMutation, useGetTopicsQuery } from '../../../api/onBoardingAPI';
-import { useGetUserTopicsQuery } from '../../../api/appAPI';
+import { useCreateTopicsMutation, useGetUserTopicsQuery } from '../../../api/appAPI';
 
 const TellUsInterestSection: FC<{ buttonText?: string, goTo?: string}>  = ( { buttonText= 'Continue', goTo = '/onboarding/customize'}) => {
   const navigate = useNavigate();
@@ -22,6 +22,7 @@ const TellUsInterestSection: FC<{ buttonText?: string, goTo?: string}>  = ( { bu
 
   const { data } = useGetTopicsQuery('');
   const { data: topics } = useGetUserTopicsQuery({ id })
+  const [createTopic, { isSuccess: createTopicSuccess}] = useCreateTopicsMutation();
   const [addTopic, { isSuccess }] = useAddTopicMutation();
 
   useEffect(() => {
@@ -40,10 +41,10 @@ const TellUsInterestSection: FC<{ buttonText?: string, goTo?: string}>  = ( { bu
   },[topics])
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && ((prompt.length > 0 && createTopicSuccess) || prompt.length === 0)) {
       navigate(goTo);
     }
-  }, [isSuccess]);
+  }, [isSuccess, createTopicSuccess]);
 
   const onOptionSelect = (optionVal: string) => {
     const currentOptions = [...options];
@@ -57,6 +58,9 @@ const TellUsInterestSection: FC<{ buttonText?: string, goTo?: string}>  = ( { bu
   }
   
   const onContinueClick = () => {
+    if (prompt?.length > 0) {
+      createTopic({ id, prompt });
+    }
     addTopic({ userId: id , topic_ids: [...options].map((e) => e.toString())})
   }
 
